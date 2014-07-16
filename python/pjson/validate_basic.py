@@ -3,7 +3,7 @@
 # vim: ai ts=4 sts=4 et sw=4
 
 # Written by Alan Viars
-import json, sys, datetime
+import json, sys, datetime, re
 
 
 def validate_basic_dict(d, enumeration_type, number=None):
@@ -147,10 +147,18 @@ def validate_basic_dict(d, enumeration_type, number=None):
         except ValueError:
             error = "deactivation_date must be in YYYY-MM-DD format."
             errors.append(error)
+    
     #validate phone numbers
     
+    if d.get('contact_person_telephone_number') and not re.match(r'^[0-9]{3}-[0-9]{3}-[0-9]{4}$',d.get('contact_person_telephone_number')):
+        error = "contact_person_telephone_number must be in XXX-XXX-XXXX format."
+        errors.append(error)
     
-    
+    if d.get('authorized_official_telephone_number') and not re.match(r'^[0-9]{3}-[0-9]{3}-[0-9]{4}$',d.get('authorized_official_telephone_number')):
+        error = "authorized_official_telephone_number must be in XXX-XXX-XXXX format."
+        errors.append(error)
+        
+    #Meta fields -----------------------------------
     if d.get("mode") not in ('W', 'P', 'E'):
         #Note this should always be (E)lectronic if submitting via API
         error = "mode must be in ('W','P','E')."
@@ -198,8 +206,7 @@ def validate_basic_dict(d, enumeration_type, number=None):
 
         if d.get("name_suffix") and d.get("name_suffix") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
                                         'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
-            error = """name_suffix must be in ['Jr.', 'Sr.',
-            'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'
+            error = """name_suffix must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'
             """
             errors.append(error)
 
@@ -230,7 +237,7 @@ def validate_basic_dict(d, enumeration_type, number=None):
             except ValueError:
                 error = "date_of_birth must be in YYYY-MM-DD format."
                 errors.append(error)
-                
+             
         
         if not d.get('state_of_birth'):
             error = "state_of_birth is required. Use ZZ if born outside the US."
@@ -282,8 +289,7 @@ def validate_basic_dict(d, enumeration_type, number=None):
         
         # Validate the interdependecies
         if (d.get('country_of_birth')) != "US" and (d.get('state_of_birth') != "ZZ"):
-            error = """country_of_birth and state_of_birth mismatch. A person
-                      cannot be born in both a foreign contry and a US state at the same time."""    
+            error = """country_of_birth and state_of_birth mismatch. A person cannot be born in both a foreign contry and a US state at the same time."""    
             errors.append(error)
             
         if not d.get('ssn') and not d.get('itin'):
@@ -315,8 +321,8 @@ def validate_basic_dict(d, enumeration_type, number=None):
             errors.append(error)
             
         # ensure a contact person is given
-        if not d.get('contact_person_phone_number'):
-            error = "contact_person_phone_number must be provided."
+        if not d.get('contact_person_telephone_number'):
+            error = "contact_person_telephone_number must be provided."
             errors.append(error)
             
 
@@ -325,14 +331,12 @@ def validate_basic_dict(d, enumeration_type, number=None):
 
         if d.get("other_name_suffix_1") and d.get("other_name_suffix_1") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
                                     'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
-            error = """other_name_suffix_1 must be in Choices must be in ['Jr.', 'Sr.',
-                        'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
+            error = """other_name_suffix_1 must be in Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
             errors.append(error)
         
         if d.get("other_name_suffix_2") and d.get("other_name_suffix_2") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
                                     'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
-            error = """other_name_suffix_2 must be in Choices must be in ['Jr.', 'Sr.',
-                        'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
+            error = """other_name_suffix_2 must be in Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
             errors.append(error)
         
         if d.get("name_prefix") and d.get("name_prefix") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
@@ -369,6 +373,23 @@ def validate_basic_dict(d, enumeration_type, number=None):
         if d.get('ein') and len(d.get('ein')) != 9 :
             error = "EIN must be 9 digits."    
             errors.append(error)
+            
+        if not d.get('authorized_official_email'):
+            error = "authorized_official_email is required for a type-2 organization provider."    
+            errors.append(error)
+        
+        if not d.get('authorized_official_first_name'):
+            error = "authorized_official_first_name is required for a type-2 organization provider."    
+            errors.append(error)
+        
+        if not d.get('authorized_official_last_name'):
+            error = "authorized_official_last_name is required for a type-2 organization provider."    
+            errors.append(error)
+        
+        if not d.get('authorized_official_telephone_number'):
+            error = "authorized_official_telephone_number is required for a type-2 organization provider."    
+            errors.append(error)
+
             
             
     return errors
