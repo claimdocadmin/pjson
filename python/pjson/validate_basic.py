@@ -14,35 +14,195 @@ def validate_basic_dict(d, enumeration_type, number=None):
     errors =[]
     
     
-    if enumeration_type == "NPI-1":
-        #Ensure required fields for NPI-1
+     #check values do not exceed max length
+            
+    max_values ={
+                'name_prefix'                 : 5,
+                'first_name'                  : 150,
+                'last_name'                   : 150,
+                'middle_name'                 : 150,
+                'name_sufix'                  : 5,
+                'credential'                  : 50,
+                'doing_business_as'           : 300,
+                'sole_proprieter'             : 3,
+                'other_first_name_1'          : 150, 
+                'other_first_name_2'          : 150, 
+                'other_last_name_1'           : 150, 
+                'other_last_name_2'           : 150, 
+                'other_middle_name_1'         : 150,  
+                'other_middle_name_2'         : 150, 
+                'other_name_code_1'           : 1, 
+                'other_name_code_2'           : 1, 
+                'other_name_credential_1'     : 50, 
+                'other_name_credential_2'     : 50, 
+                'other_name_prefix_1'         : 5, 
+                'other_name_prefix_2'         : 5, 
+                'other_name_suffix_1'         : 4, 
+                'other_name_suffix_2'         : 4,
+                'organization_name'           : 300,
+                'organization_other_name'     : 300,
+                'organization_other_name_code': 1,
+                'ssn'                         : 9,
+                'ein'                         : 9,
+                'itin'                        : 9,
+                'gender'                      : 1,
+                'state_of_birth'              : 2,
+                'country_of_birth'            : 2,
+                'mode'                        : 1,
+                'status'                      : 1,
+                'contact_method'              : 1,
+                'classification'              : 1,
+                'deactivated_details'         : 1024,
+                'deactivation_reason_code'    : 2,
+                'deceased_notes'              : 1024,
+                'parent_organization_npi'     : 9,
+                'parent_organization_ein'     : 9,
+                'parent_organization_legal_business_name': 300,
+                'reactivation_note'           : 1024,
+                'comments'                    : 1024,
+                'contact_person_credential'   : 5, 
+                'contact_person_email'        : 75, 
+                'contact_person_first_name'   : 150, 
+                'contact_person_last_name'    : 150, 
+                'contact_person_middle_name'  : 150, 
+                'contact_person_prefix'       : 5, 
+                'contact_person_suffix'       : 4, 
+                'contact_person_telephone_extension'        : 10, 
+                'contact_person_telephone_number'           : 12, 
+                'contact_person_title_or_position'          : 150,
+                'authorized_official_credential'            : 50, 
+                'authorized_official_email'                 : 75, 
+                'authorized_official_first_name'            : 300, 
+                'authorized_official_last_name'             : 300, 
+                'authorized_official_middle_name'           : 300, 
+                'authorized_official_prefix'                : 4, 
+                'authorized_official_suffix'                : 5, 
+                'authorized_official_telephone_number'      : 10, 
+                'authorized_official_telephone_extension'   : 12, 
+                'authorized_official_title_or_position'     : 300,
+                'website'                       : 1024,
+                'gravatar_email'                : 200,  
+                'facebook_handle'               : 100, 
+                'twitter_handle'                : 100, 
+                'public_email'                  : 75,    
+                'driving_directions'            : 1024, 
+                'bio_headline'                  : 256, 
+                }
     
-        if d.get("name_prefix") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
-            error = "name_prefix must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
+    for k in max_values.keys():                
+        if d.get(k):
+            if max_values[k] < len(d.get(k)):
+                error = "%s max allowable length %s." % (k, max_values[k])
+                errors.append(error)
+    
+    #Validate Common items ------------------------------------------
+    
+    #validate all dates
+    if d.get('date_of_birth'):
+        try:
+            date = datetime.datetime.strptime(d.get('date_of_birth'), '%Y-%m-%d').date()
+        except ValueError:
+            error = "date_of_birth must be in YYYY-MM-DD format."
             errors.append(error)
+
+
+    if d.get('enumeration_date'):
+        try:
+            date = datetime.datetime.strptime(d.get('enumeration_date'), '%Y-%m-%d').date()
+        except ValueError:
+            error = "enumeration_date must be in YYYY-MM-DD format."
+            errors.append(error)
+
+    if d.get('last_updated'):
+        try:
+            date = datetime.datetime.strptime(d.get('last_updated'), '%Y-%m-%d').date()
+        except ValueError:
+            error = "last_updated must be in YYYY-MM-DD format."
+            errors.append(error)
+
+    if d.get('initial_enumeration_date'):
+        try:
+            date = datetime.datetime.strptime(d.get('initial_enumeration_date'), '%Y-%m-%d').date()
+        except ValueError:
+            error = "initial_enumeration_date must be in YYYY-MM-DD format."
+            errors.append(error)
+
+    if d.get('date_of_death'):
+        try:
+            date = datetime.datetime.strptime(d.get('date_of_death'), '%Y-%m-%d').date()
+        except ValueError:
+            error = "date_of_death must be in YYYY-MM-DD format."
+            errors.append(error)
+            
+    if d.get('reactivation_date'):
+        try:
+            date = datetime.datetime.strptime(d.get('reactivation_date'), '%Y-%m-%d').date()
+        except ValueError:
+            error = "reactivation_date must be in YYYY-MM-DD format."
+            errors.append(error)
+            
+    if d.get('deactivation_date'):
+        try:
+            date = datetime.datetime.strptime(d.get('deactivation_date'), '%Y-%m-%d').date()
+        except ValueError:
+            error = "deactivation_date must be in YYYY-MM-DD format."
+            errors.append(error)
+    #validate phone numbers
+    
+    
+    
+    if d.get("mode") not in ('W', 'P', 'E'):
+        #Note this should always be (E)lectronic if submitting via API
+        error = "mode must be in ('W','P','E')."
+        errors.append(error)
+    
+    
+    if d.get("classification") and d.get("classification") not in ('N', 'C'):
+        # Note: This is ony required when submitting for a new NPI or to change
+        # an existing one
+        error = "classification must be in ('N','C')."
+        errors.append(error)
         
     
-        if not d.get('first_name', ""):
+    if d.get("status") and d.get("status") not in ('E', 'P', 'A', 'D', 'R'):
+        
+        #Note: NPPES will ignore this since status is decided by NPPES.
+        error = "status must be in ('E', 'P', 'A', 'D', 'R')."
+        errors.append(error)
+
+
+    if d.get("contact_method") and d.get("contact_method") not in ('M', 'E',):
+        
+        #Note: NPPES will ignore this since status is decided by NPPES.
+        error = "contact_method must be in ('M', 'E')."
+        errors.append(error)
+    
+    
+
+    
+    
+    # NPI-1 -------------------------------------------------------------------
+    if enumeration_type == "NPI-1": 
+        #Ensure required fields for NPI-1
+    
+        if not d.get('first_name'):
             error = "first_name is required."
             errors.append(error)
-        else:
-            if len(d.get('first_name')) > 150:
-                error = "first_name is longer than allowable."
-                errors.append(error)
+
             
             
         if not d.get('last_name'):
             error = "last_name is required."
             errors.append(error)
-        else:
-            if len(d.get('last_name')) > 150:
-                error = "last_name is longer than allowable."
-                errors.append(error)
-                        
-        if len(d.get('middle_name')) > 150:
-            
-                error = "middle_name is longer than allowable."
-                errors.append(error)
+
+
+        if d.get("name_suffix") and d.get("name_suffix") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
+                                        'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
+            error = """name_suffix must be in ['Jr.', 'Sr.',
+            'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'
+            """
+            errors.append(error)
+
 
         if not d.get('sole_proprietor'):
             error = "sole_proprietor is required and must be in ('YES', 'NO')."
@@ -131,115 +291,84 @@ def validate_basic_dict(d, enumeration_type, number=None):
             errors.append(error)
         
         if d.get('ssn') and len(d.get('ssn')) != 9 :
-            error = "SSN must be 9 digits."    
+            error = "SSN must be 9 digits."
             errors.append(error)
         
         if d.get('itin') and len(d.get('itin')) != 9 :
             error = "ITIN must be 9 digits."    
             errors.append(error)
-            
-        if d.get('ein') and len(d.get('ein')) != 9 :
-            error = "EIN must be 9 digits."    
+         
+         
+        # ensure a contact person is given
+        if not d.get('contact_person_email'):
+            error = "contact_person_email must be provided."
             errors.append(error)
+
+        # ensure a contact person is given
+        if not d.get('contact_person_first_name'):
+            error = "contact_person_first_name must be provided."
+            errors.append(error)
+            
+        # ensure a contact person is given
+        if not d.get('contact_person_last_name'):
+            error = "contact_person_last_name must be provided."
+            errors.append(error)
+            
+        # ensure a contact person is given
+        if not d.get('contact_person_phone_number'):
+            error = "contact_person_phone_number must be provided."
+            errors.append(error)
+            
 
 
         #Validate the not required items NPI-1
-            #check values do not exceed max length
+
+        if d.get("other_name_suffix_1") and d.get("other_name_suffix_1") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
+                                    'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
+            error = """other_name_suffix_1 must be in Choices must be in ['Jr.', 'Sr.',
+                        'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
+            errors.append(error)
+        
+        if d.get("other_name_suffix_2") and d.get("other_name_suffix_2") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
+                                    'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
+            error = """other_name_suffix_2 must be in Choices must be in ['Jr.', 'Sr.',
+                        'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
+            errors.append(error)
+        
+        if d.get("name_prefix") and d.get("name_prefix") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
+            error = "other_name_prefix_1  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
+            errors.append(error)
+        
+        
+        if d.get("other_name_prefix_1") and d.get("other_name_prefix_1") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
+            error = "other_name_prefix_1  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
+            errors.append(error)
             
-            max_values ={
-                'other_first_name_1'          : 150, 
-                'other_first_name_2'          : 150, 
-                'other_last_name_1'           : 150, 
-                'other_last_name_2'           : 150, 
-                'other_middle_name_1'         : 150,  
-                'other_middle_name_2'         : 150, 
-                'other_name_code_1'           : 150, 
-                'other_name_code_2'           : 150, 
-                'other_name_credential_1'     : 150, 
-                'other_name_credential_2'     : 150, 
-                'other_name_prefix_1'         : 150, 
-                'other_name_prefix_2'         : 150, 
-                'other_name_suffix_1'         : 150, 
-                'other_name_suffix_2'         : 150, 
-                }
-            for k in max_values.keys():
-                print  max_values[k], d.get(k)
-                
-                if max_values[k] < len(d.get(k)):
-                    error = "%s max allowable length %s." % (k, max_values[k])
-                    errors.append(error)
+        if d.get("other_name_prefix_2") and d.get("other_name_prefix_2") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
+            error = "other_name_prefix_2  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
+            errors.append(error) 
+    
+    
+    
     
     if enumeration_type == "NPI-2":
-        
-            #Validate the organization
-            if not d.get('organization_name', ""):
-                error = "organization_name is required."
+    
+        #Validate the organization
+        if not d.get('organization_name', ""):
+            error = "organization_name is required."
+            errors.append(error)
+        else:
+            if len(d.get('organization_name')) > 300:
+                error = "organization_name is longer than allowable."
                 errors.append(error)
-            else:
-                if len(d.get('organization_name')) > 300:
-                    error = "organization_name is longer than allowable."
-                    errors.append(error)
+        
+        if not d.get('ein'):
+            error = "EIN is required for a type-2 organization provider."    
+            errors.append(error)
+        
+        if d.get('ein') and len(d.get('ein')) != 9 :
+            error = "EIN must be 9 digits."    
+            errors.append(error)
             
-            #"organization_name": "", 
-            #"organization_other_name": "", 
-            #"organization_other_name_code": "", 
-            #"organizational_subpart": false, 
-            #"ssn": "222222222", 
-            #"ein": "", 
-            #"itin": "", 
-            #"gender": "M", 
-            #"date_of_birth": "1970-11-01", 
-            #"state_of_birth": "KY", 
-            #"country_of_birth": "US", 
-            #"number": "138724606", 
-            #"initial_enumeration_date": "2014-07-14", 
-            #"enumeration_date": "2014-07-14", 
-            #"last_updated": "2014-07-15", 
-            #"updated": "2014-07-15 14:39:59.079910+00:00", 
-            #"date_of_death": "None", 
-            #"reactivation_date": "None", 
-            #"classification": "C", 
-            #"mode": "W", 
-            #"status": "A", 
-            #"contact_method": "E", 
-            #"deactivated_details": "", 
-            #"deactivation_date": "None", 
-            #"deactivation_reason_code": "", 
-            #"decativation_note": "", 
-            #"deceased_notes": "", 
-            #"parent_organization": null, 
-            #"parent_organization_ein": "", 
-            #"parent_organization_legal_business_name": "", 
-            #"recativation_note": "", 
-            #"comments": "", 
-            #"authorized_official_credential": "", 
-            #"authorized_official_email": "", 
-            #"authorized_official_first_name": "", 
-            #"authorized_official_last_name": "", 
-            #"authorized_official_middle_name": "", 
-            #"authorized_official_prefix": "", 
-            #"authorized_official_suffix": "", 
-            #"authorized_official_telephone_number": "", 
-            #"authorized_official_telephone_extension": "", 
-            #"authorized_official_title": "", 
-            #"authorized_official_title_or_position": "", 
-            #"contact_person_credential": "", 
-            #"contact_person_email": "", 
-            #"contact_person_first_name": "", 
-            #"contact_person_last_name": "", 
-            #"contact_person_middle_name": "", 
-            #"contact_person_prefix": "", 
-            #"contact_person_suffix": "", 
-            #"contact_person_telephone_extension": "", 
-            #"contact_person_telephone_number": "", 
-            #"contact_person_title": "", 
-            #"contact_person_title_or_position": "", 
-            #"website": "", 
-            #"facebook_handle": "", 
-            #"twitter_handle": "", 
-            #"public_email": "", 
-            #"gravatar_email": "", 
-            #"driving_directions": "", 
-            #"bio_headline": ""
-            #
+            
     return errors
