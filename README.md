@@ -81,7 +81,7 @@ These are as follows:
  <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -150,7 +150,7 @@ These are as follows:
  
  <tr>
    <td>other_first_name_1</td>
-   <td>100</td>
+   <td>150</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -158,7 +158,7 @@ These are as follows:
  
  <tr>
    <td>other_first_name_2</td>
-   <td>100</td>
+   <td>150</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -166,7 +166,7 @@ These are as follows:
  
  <tr>
    <td>other_last_name_1</td>
-   <td>100</td>
+   <td>150</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -174,7 +174,7 @@ These are as follows:
  
  <tr>
    <td>other_last_name_2</td>
-   <td>100</td>
+   <td>150</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -182,15 +182,15 @@ These are as follows:
  
  <tr>
    <td>other_middle_name_1</td>
-   <td>100</td>
-   <td>N</td>
+   <td>150</td>
+   <td></td>
    <td></td>
  </tr>
         
  
  <tr>
    <td>other_middle_name_2</td>
-   <td>100</td>
+   <td>150</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -214,7 +214,7 @@ These are as follows:
  
  <tr>
    <td>other_name_credential_1</td>
-   <td>20</td>
+   <td>50</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -222,7 +222,7 @@ These are as follows:
  
  <tr>
    <td>other_name_credential_2</td>
-   <td>20</td>
+   <td>50</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -477,10 +477,10 @@ These are as follows:
         
  
  <tr>
-   <td>parent_organization</td>
-   <td>None</td>
+   <td>parent_organization_npi</td>
+   <td>9</td>
    <td>N</td>
-   <td></td>
+   <td>The NPI of the parent organization.</td>
  </tr>
         
  
@@ -518,7 +518,7 @@ These are as follows:
  
  <tr>
    <td>authorized_official_credential</td>
-   <td>20</td>
+   <td>50</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -534,7 +534,7 @@ These are as follows:
  
  <tr>
    <td>authorized_official_first_name</td>
-   <td>150</td>
+   <td>300</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -542,7 +542,7 @@ These are as follows:
  
  <tr>
    <td>authorized_official_last_name</td>
-   <td>150</td>
+   <td>300</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -550,7 +550,7 @@ These are as follows:
  
  <tr>
    <td>authorized_official_middle_name</td>
-   <td>150</td>
+   <td>300</td>
    <td>N</td>
    <td></td>
  </tr>
@@ -558,7 +558,7 @@ These are as follows:
  
  <tr>
    <td>authorized_official_prefix</td>
-   <td>10</td>
+   <td>5</td>
    <td>N</td>
    <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.']</td>
  </tr>
@@ -756,7 +756,7 @@ Addresses
  <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -963,7 +963,7 @@ Taxonomies
 <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Requierd</td>
   <td>Notes</td>
 </tr>
 
@@ -1047,7 +1047,7 @@ Identifiers
 <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -1081,30 +1081,7 @@ Identifiers
 </tr>
 
 
-
-
-
-identifier   = models.CharField(max_length=20,db_index=True)
-    code         = models.CharField(max_length=2, choices=IDENTIFIER_CODE_CHOICES,
-                                    blank=True, default="")
-    state        = models.CharField(max_length=2, blank=True, default="",
-                                    choices=US_STATE_CHOICES)
-    issuer       = models.CharField(max_length=150, blank=True, default="" )
-    added    
-
-
-https://github.com/HHSIDEAlab/mlvs/blob/master/docs/USProviderLicenseTypesFeb2014.csv
-
-
-
-
 </table>
-
-
-
-
-
-
 
 
 
@@ -1116,7 +1093,7 @@ Direct Addresses
 <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -1147,7 +1124,7 @@ Direct Addresses
 </table>
 
 Code Contributions
-=============
+==================
 
 
 We are looking for code contributions in the form of pull requests.
