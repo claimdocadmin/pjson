@@ -765,13 +765,13 @@ Addresses
           <td>address_purpose</td>
           <td>20</td>
           <td>Y</td>
-          <td>Choices must be in ['LOCATION', 'MAILING', 'MEDREC-STORAGE', '1099', 'REVALIDATION', 'ADDITIONAL-LOCATION', 'REMITTANCE']</td>
+          <td>Choices must be in ['LOCATION', 'MAILING', 'MEDREC-STORAGE', '1099', 'REVALIDATION', 'ADDITIONAL-LOCATION', 'REMITTANCE', 'TELEMEDICINE']</td>
 </tr>
             
 
         <tr>
           <td>address_type</td>
-          <td>12</td>
+          <td>3</td>
           <td>Y</td>
           <td>Choices must be in ['DOM', 'FGN', 'MIL']</td>
         </tr>
@@ -793,12 +793,10 @@ Addresses
         </tr>
 
 
-
-
         <tr>
           <td>city</td>
           <td>200</td>
-          <td>N</td>
+          <td>Y</td>
           <td></td>
         </tr>
 
@@ -806,31 +804,24 @@ Addresses
         <tr>
           <td>zip</td>
           <td>10</td>
-          <td>N</td>
+          <td>Y</td>
           <td></td>
         </tr>
 
         <tr>
           <td>country_code</td>
           <td>2</td>
-          <td>N</td>
+          <td>Y</td>
           <td>Choices must be in ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BQ', 'BA', 'BW', 'BV', 'BR', 'IO', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC', 'CO', 'KM', 'CG', 'CD', 'CK', 'CR', 'CI', 'HR', 'CU', 'CW', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GM', 'GE', 'DE', 'GH', 'GI', 'GR', 'GL', 'GD', 'GP', 'GU', 'GT', 'GG', 'GN', 'GW', 'GY', 'HT', 'HM', 'VA', 'HN', 'HK', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'JM', 'JP', 'JE', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MO', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MQ', 'MR', 'MU', 'YT', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MS', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'NC', 'NZ', 'NI', 'NE', 'NG', 'NU', 'NF', 'MP', 'NO', 'OM', 'PK', 'PW', 'PS', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PL', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'BL', 'SH', 'KN', 'LC', 'MF', 'PM', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SX', 'SK', 'SI', 'SB', 'SO', 'ZA', 'GS', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VG', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW']</td>
         </tr>
 
-
-
-
-
-
-        <tr>
-          <td>driving_details</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
+      <tr>
+          <td>mpo</td>
+          <td>3</td>
+          <td>S</td>
+          <td>Choices must be in ['APO','FPS', 'DPO']. Required for military addresses.</td>
         </tr>
-            
 
-            
 
         <tr>
           <td>foreign_fax_number</td>
@@ -849,25 +840,12 @@ Addresses
 
 
         <tr>
-          <td>foreign_state</td>
-          <td>2</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-        <tr>
           <td>foreign_telephone_number</td>
           <td>20</td>
           <td>N</td>
           <td></td>
         </tr>
 
-        <tr>
-          <td>hours_of_operation</td>
-          <td>255</td>
-          <td>N</td>
-          <td></td>
-        </tr>
 
         <tr>
           <td>lat</td>
@@ -891,37 +869,7 @@ Addresses
           <td></td>
         </tr>
 
-        <tr>
-          <td>private_email_contact</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-
-        <tr>
-          <td>public_email_contact</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-
-        <tr>
-          <td>rdi</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-
-        <tr>
-          <td>record_type</td>
-          <td>2</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
+      
         <tr>
           <td>telephone_number_extension</td>
           <td>10</td>
@@ -1007,32 +955,29 @@ Licenses
   <td>number</td>
   <td>50</td>
   <td>N</td>
-  <td>The number or identifier provided by the issuing organization.</td>
-</tr>
-
-<tr>
-  <td>type</td>
-  <td>3</td>
-  <td>N</td>
-  <td>The license type. Choices according US-ISO 2./td>
-</tr>
-
-
-<tr>
-  <td>state</td>
-  <td>3</td>
-  <td>N</td>
-  <td>The license type. Choices according to https://github.com/HHSIDEAlab/mlvs/blob/master/docs/USProviderLicenseTypesFeb2014.csv</td>
+  <td>c</td>
 </tr>
 
 
 <tr>
   <td>code</td>
-  <td>3</td>
+  <td>50</td>
   <td>Y</td>
-  <td>Codified [ST]-[PROVIDER_TYPE]-[NUMBER] format.</td>
+  <td>Codified license code in [ST]-[PROVIDER_LICENSE_TYPE]-[NUMBER] format.
+  ST according to 2-letter ISO code.
+  PROVIDER_LICENSE_TYPE according to https://github.com/HHSIDEAlab/mlvs/blob/master/docs/USProviderLicenseTypesFeb2014.csv </td>
+  NUMBER is or identifier is provided by the issuing organization.
 </tr>
 
+<tr>
+  <td>status</td>
+  <td>10</td>
+  <td>Y</td>
+  <td>Must be one of these values [ 'UNKNOWN', 'ACTIVE','ACTIVE_WITH_RESTRICTIONS',
+  'EXPIRED', 'REVOKED', 'DECEASED']. Typicaly this is verified by the Enumerator
+  and therefor when submitting transactions use 'UNKNOWN' as other
+  supplied values are ignored and treated as UNKNOWN.</td>
+</tr>
 
 
 </table>
@@ -1055,22 +1000,22 @@ Identifiers
   <td>identifier</td>
   <td>20</td>
   <td>Y</td>
-  <td>The number or code issued by the issuing body.When populated all other fields are auto-populated.</td>
+  <td>The number or code issued by the issuing body.</td>
 </tr>
 
 
 <tr>
   <td>code</td>
-  <td>15</td>
+  <td>2</td>
   <td>Y</td>
-  <td>Codified identifier type.</td>
+  <td>Must be in ["", "01", "02", "04","05", "06", "07", "08"]. See NPI final rule for details.</td>
 </tr>
 
 <tr>
   <td>state</td>
-  <td>20</td>
-  <td>Y</td>
-  <td>The number issued by the issuing body.</td>
+  <td>2</td>
+  <td>N</td>
+  <td>A two-letter ISO code for a state.</td>
 </tr>
 
 <tr>
