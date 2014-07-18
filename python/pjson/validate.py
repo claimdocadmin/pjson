@@ -5,6 +5,11 @@
 # Written by Alan Viars
 import json, sys
 from validate_basic import validate_basic_dict
+from validate_addresses import validate_address_list
+from validate_licenses import validate_license_list
+from validate_direct_addresses import validate_direct_address_list
+from validate_taxonomies import validate_taxonomy_list
+from validate_identifiers import validate_identifier_list
 
 def validate_pjson(j):
     """
@@ -31,7 +36,8 @@ def validate_pjson(j):
     if not d.has_key("enumeration_type"):
         error ="The JSON object does not contain enumeration_type."
         errors.append(error)
-        return errorso
+        return errors
+    
     # Is the enumeration_type a valid?
     if d["enumeration_type"] not in ("NPI-1", "NPI-2", "OEID", "HPID"):
         error ="enumeration_type must be one of these: ('NPI-1', 'NPI-2', 'OEID', 'HPID')"
@@ -44,13 +50,25 @@ def validate_pjson(j):
     else:
         number = d['number']
     
-    
     #Check for errors in the basic section    
     basic_errors = validate_basic_dict(d['basic'], d['enumeration_type'], number)
-    if basic_errors:
-        errors = errors + basic_errors
     
+    #Check for errors in the basic section    
+    address_errors = validate_address_list(d['addresses'], d['enumeration_type'])
+
+
+    #Check for errors in the license section    
+    license_errors = validate_license_list(d['licenses'], d['enumeration_type'])
+
+    taxonomy_errors = validate_taxonomy_list(d['taxonomies'], d['enumeration_type'])
     
+    identifier_errors = validate_identifier_list(d['identifiers'], d['enumeration_type'])
+    
+    direct_errors = validate_direct_address_list(d['direct_addresses'], d['enumeration_type'])
+
+    errors = errors + basic_errors + address_errors + license_errors + \
+                        direct_errors + taxonomy_errors + identifier_errors
+
     return errors
 
 
