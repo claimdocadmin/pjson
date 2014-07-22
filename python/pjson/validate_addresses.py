@@ -39,10 +39,7 @@ def validate_address_list(l, enumeration_type):
                                             d['address_2'], d['city'], d['state'],
                                             d['zip'], d['address_type'],
                                            d['address_purpose'])
-                                            
-        
-        
-        
+
         
         for k in max_values.keys():
             if d.get(k):

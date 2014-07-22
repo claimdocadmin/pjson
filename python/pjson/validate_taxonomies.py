@@ -21,17 +21,12 @@ def validate_taxonomy_list(l, enumeration_type):
             error = "%s : primay must be true or false." % (d.get('code'))
             errors.append(error)
         
-            if not d.get('organization'):
-                error = "%s : organization is required." % (d.get('code'))
-                errors.append(error)
-        
         if d.get('primary') == True:
             primary_count += 1
-    
     # check that only one taxonomy is marked as primary
     
     if primary_count != 1:
-        error = "Exactly 1 taxonomy code must be marked as primary. The primary count is %s." % (primary_count)
+        error = "Exactly 1 tddddaxonomy code must be marked as primary. The primary count is %s." % (primary_count)
         errors.append(error)
     
 
