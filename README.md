@@ -3,19 +3,24 @@ ProviderJSON
 
 0.0.1
 
-ProviderJSON is a JSON object format for US health care providers. It is based on fields currently collected to receive or maintain a National Provider Identifier (or NPI). ProviderJSON is the basis for the NPPES National Plan and Provider Enumeration System (NPPES) write API.Here is a high-level pseudo-code example:
+ProviderJSON is a JSON object format for US health care providers. 
+It is based on fields currently collected to receive or maintain 
+a National Provider Identifier (or NPI). ProviderJSON is the basis for 
+the NPPES National Plan and Provider Enumeration System (NPPES) write API.
+Here is a high-level pseudo-code example:
 
 
     {
-        "enumeration_type": "NPI-1",
-        "number": "114283205",
-        "basic": {...},
-        "addresses": [...],
-        "taxonomies": [... ],
-        "licenses": [...],
-        "identifiers": [...],
-        "specialties": [...],
-        "direct-addresses": [...],
+        "enumeration_type" : "NPI-1",
+        "number"           : "114283205",
+        "classification"   : "C",
+        "basic"            : {...},
+        "addresses"        : [...],
+        "taxonomies"       : [... ],
+        "licenses"         : [...],
+        "identifiers"      : [...],
+        "specialties"      : [...],
+        "direct-addresses" : [...],
         .
         .
         .
@@ -35,8 +40,32 @@ This field is required and shall be one of the four values.
 * HPID  - A health plan identifier.
 
 
+
+Number
+_____
+
+The assigned enumeration number (e.g. an NPI). This field should
+be left blank when submitting a new enumeration request, but
+must be provided on change requests. Number is always length 9 where 
+the  last number is a checkdigit according to the Luhn algorithm. 
+Please refer to the NPI final rule for more infromation.
+
+
+Classification
+______________
+
+This field only when submitting to the API and shall indicate weather
+the request is for a new enumeration or to change an existing enumeration.
+The two possible values are:
+
+
+* N - For a (N)ew enumeration request.
+* C - To (C)hange an existing enumeration.
+
+
+
 Requirements for National Plan Identifer Type I Individual (NPI-1)
-______________________
+__________________________________________________________________
 
 * basic - name, contact person etc.
 * licenses - at least 1 license or certification
@@ -61,14 +90,9 @@ Requirements for a Health Plan Identifier (HPID)
 ________________________________________________
 
 * basic - name, contact person etc.
-* taxonomies - at least one and one should be marked as primary
+* taxonomies - at least one and one should be marked as primary.
 
 
-
-Number
-------
-
-The number field contains the actual enumeration number for the enumeration type. This is typically 9 digits in length.  This field is required on an update but can be ommitted when using ProviderJSON to create a new enumeration record.
 
 
 Basic

@@ -11,6 +11,15 @@ from pjson.validate_direct_addresses import validate_direct_address_list
 from pjson.validate_taxonomies import validate_taxonomy_list
 from pjson.validate_identifiers import validate_identifier_list
 
+#from validate_basic import validate_basic_dict
+#from validate_addresses import validate_address_list
+#from validate_licenses import validate_license_list
+#from validate_direct_addresses import validate_direct_address_list
+#from validate_taxonomies import validate_taxonomy_list
+#from validate_identifiers import validate_identifier_list
+
+
+
 def validate_pjson(j):
     """
     Input a JSON object as a string. return a list of errors. If error list
@@ -37,6 +46,13 @@ def validate_pjson(j):
         error ="The JSON object does not contain enumeration_type."
         errors.append(error)
         return errors
+    
+    # Does it contain the top-level enumeration_type
+    if d.get("classification") not in ('N', 'C'):
+        error ="The JSON object does not contain a classification. Values must be either (N)ew or (C)hange"
+        errors.append(error)
+        return errors
+    
     
     # Is the enumeration_type a valid?
     if d["enumeration_type"] not in ("NPI-1", "NPI-2", "OEID", "HPID"):
