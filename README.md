@@ -119,7 +119,7 @@ These are as follows:
  <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Requried</td>
   <td>Notes</td>
 </tr>
 
@@ -440,15 +440,7 @@ These are as follows:
    <td>N</td>
    <td></td>
  </tr>
-        
- 
- <tr>
-   <td>classification</td>
-   <td>1</td>
-   <td>Y</td>
-   <td>Choices must be in ['N', 'C']</td>
- </tr>
-        
+          
  
  <tr>
    <td>mode</td>
@@ -484,9 +476,9 @@ These are as follows:
  
  <tr>
    <td>deactivation_date</td>
-   <td>None</td>
+   <td>10</td>
    <td>N</td>
-   <td></td>
+   <td>Format must be YYYY-MM-DD</td>
  </tr>
         
  
@@ -613,24 +605,24 @@ These are as follows:
  <tr>
    <td>authorized_official_telephone_number</td>
    <td>20</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-2 only</td>
  </tr>
         
  
  <tr>
    <td>authorized_official_telephone_extension</td>
    <td>10</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-2 only</td>
  </tr>
         
  
  <tr>
    <td>authorized_official_title</td>
    <td>150</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-2 only</td>
  </tr>
         
  
@@ -638,7 +630,7 @@ These are as follows:
    <td>authorized_official_title_or_position</td>
    <td>150</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-2</td>
  </tr>
         
  
@@ -646,31 +638,31 @@ These are as follows:
    <td>contact_person_credential</td>
    <td>20</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-1</td>
  </tr>
         
  
  <tr>
    <td>contact_person_email</td>
    <td>75</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-1</td>
  </tr>
         
  
  <tr>
    <td>contact_person_first_name</td>
    <td>150</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-1</td>
  </tr>
         
  
  <tr>
    <td>contact_person_last_name</td>
    <td>150</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-1.</td>
  </tr>
         
  
@@ -678,7 +670,7 @@ These are as follows:
    <td>contact_person_middle_name</td>
    <td>150</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-1</td>
  </tr>
         
  
@@ -686,7 +678,8 @@ These are as follows:
    <td>contact_person_prefix</td>
    <td>5</td>
    <td>N</td>
-   <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.']</td>
+   <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'].
+   Applies only to NPI-1</td>
  </tr>
         
  
@@ -694,7 +687,8 @@ These are as follows:
    <td>contact_person_suffix</td>
    <td>4</td>
    <td>N</td>
-   <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']</td>
+   <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'].
+   Applies only to NPI-1</td>
  </tr>
         
  
@@ -702,15 +696,15 @@ These are as follows:
    <td>contact_person_telephone_extension</td>
    <td>10</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-1</td>
  </tr>
         
  
  <tr>
    <td>contact_person_telephone_number</td>
    <td>20</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-1 if the contact person has a telephone number.</td>
  </tr>
         
  
@@ -718,7 +712,7 @@ These are as follows:
    <td>contact_person_title</td>
    <td>150</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-1</td>
  </tr>
         
  
@@ -726,7 +720,7 @@ These are as follows:
    <td>contact_person_title_or_position</td>
    <td>150</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-1</td>
  </tr>
         
  
@@ -794,7 +788,7 @@ Addresses
  <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -1001,7 +995,7 @@ Taxonomies
 <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -1036,7 +1030,7 @@ Licenses
 <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -1085,7 +1079,7 @@ Identifiers
 <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -1130,7 +1124,7 @@ Direct Addresses
 <tr>
   <td>Name</td>
   <td>Max Length</td>
-  <td>Requied</td>
+  <td>Required</td>
   <td>Notes</td>
 </tr>
 
@@ -1161,7 +1155,7 @@ Direct Addresses
 </table>
 
 Code Contributions
-=============
+==================
 
 
 We are looking for code contributions in the form of pull requests.
