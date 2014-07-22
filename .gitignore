@@ -1,1 +1,7 @@
 *.pyc
+*.kpf
+MANIFEST
+build/
+dist/
+*.json
+
