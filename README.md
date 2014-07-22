@@ -26,7 +26,23 @@ Here is a high-level pseudo-code example:
         .
     }
 
-The object contains several high-level cmponents of information.  The `enumeration_type` acts a switch determining what is required and what is not. The `number` component contains a string of the enumeration number. `basic` is an object that contains basic demographic information (e.g. name, contact person, etc.). `addresses` contains an array of provider address objects. `taxonomies` is an array of taxonomy classification objects,`licenses` contains an array of license information. `identifiers` contains an array of other identifier objects. `specialities` contains an array of provider specalitt objects. `direct-addresses` contain an array of Direct email address objects. Each of these main components are described in detail in the sections below.  Much of the information is optional or is only required in specific circumstances. It is possibile to add additional infformation to this document so long as the additional items do not confilict with the fields defined here.  It is the hope that other companets can be defined over time so that all provider information can be represented here.
+The object contains several high-level cmponents of information.
+The `enumeration_type` acts a switch determining what is required and what is
+not. The `number` component contains a string of the enumeration number.
+`classification` is used when submitting this informartion via API to indicate
+whether the request is for a new enumeration or a change request.
+`basic` is an object that contains basic demographic information (e.g. name,
+contact person, etc.). `addresses` contains an array of provider address objects.
+`taxonomies` is an array of taxonomy classification objects,`licenses` contains
+an array of license information. `identifiers` contains an array of other
+identifier objects. `specialities` contains an array of provider specalitt
+objects. `direct-addresses` contain an array of Direct email address objects.
+Each of these main components are described in detail in the sections below.
+Much of the information is optional or is only required in specific
+circumstances. It is possibile to add additional infformation to this document
+so long as the additional items do not confilict with the fields defined here.
+It is the hope that other componets can be defined over time so that all provider
+information can be represented here.
 
 Enumeration Type
 ----------------
@@ -42,7 +58,7 @@ This field is required and shall be one of the four values.
 
 
 Number
-_____
+------
 
 The assigned enumeration number (e.g. an NPI). This field should
 be left blank when submitting a new enumeration request, but
@@ -52,7 +68,7 @@ Please refer to the NPI final rule for more infromation.
 
 
 Classification
-______________
+--------------
 
 This field only when submitting to the API and shall indicate weather
 the request is for a new enumeration or to change an existing enumeration.
@@ -65,7 +81,7 @@ The two possible values are:
 
 
 Requirements for National Plan Identifer Type I Individual (NPI-1)
-__________________________________________________________________
+------------------------------------------------------------------
 
 * basic - name, contact person etc.
 * licenses - at least 1 license or certification
@@ -73,7 +89,7 @@ __________________________________________________________________
 * addresses - Exactly one mailing addrress.  Exactly one primary practice location.
 
 Requirements for National Plan Identifer Type II Entity (NPI-2)
-_______________________________________________________________
+---------------------------------------------------------------
 
 
 * basic - name, contact person etc.
@@ -81,18 +97,16 @@ _______________________________________________________________
 * addresses - Exactly one mailing addrress.  Exactly one primary practice location.
 
 Requirements for Other Entitiy Identifier (OEID)
-________________________________________________
+------------------------------------------------
 
 * basic - name, contact person etc.
 * taxonomies - at least one and one should be marked as primary.
 
 Requirements for a Health Plan Identifier (HPID)
-________________________________________________
+------------------------------------------------
 
 * basic - name, contact person etc.
 * taxonomies - at least one and one should be marked as primary.
-
-
 
 
 Basic
