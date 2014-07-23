@@ -97,14 +97,6 @@ def validate_basic_dict(d, enumeration_type, number=None):
     
     #Validate Common items ------------------------------------------
     
-    #validate all dates
-    if d.get('date_of_birth'):
-        try:
-            date = datetime.datetime.strptime(d.get('date_of_birth'), '%Y-%m-%d').date()
-        except ValueError:
-            error = "date_of_birth must be in YYYY-MM-DD format."
-            errors.append(error)
-
 
     if d.get('enumeration_date'):
         try:
