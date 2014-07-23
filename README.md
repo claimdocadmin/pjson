@@ -518,7 +518,7 @@ These are as follows:
         
  
  <tr>
-   <td>decativation_note</td>
+   <td>deactivation_note</td>
    <td>1024</td>
    <td>N</td>
    <td></td>
@@ -558,7 +558,7 @@ These are as follows:
         
  
  <tr>
-   <td>recativation_note</td>
+   <td>reactivation_note</td>
    <td>1024</td>
    <td>N</td>
    <td></td>
