@@ -151,9 +151,9 @@ def validate_basic_dict(d, enumeration_type, number=None):
         errors.append(error)
         
     #Meta fields -----------------------------------
-    if d.get("mode") not in ('W', 'P', 'E'):
+    if d.get("mode") not in ('W', 'P', 'E', 'A'):
         #Note this should always be (E)lectronic if submitting via API
-        error = "mode must be in ('W','P','E')."
+        error = "mode must be in ('W','P','E', 'A')."
         errors.append(error)
     
     
