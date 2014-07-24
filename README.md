@@ -3,6 +3,21 @@ ProviderJSON
 
 0.0.6
 
+
+Quick Installation
+==================
+
+A validation library(Python) and command line tool for validating ProviderJSON
+is contained in this repository.  the easiest way to install it is using `pip`.
+
+
+    pip install providerjson
+
+
+
+ProviderJSON Format
+===================
+
 ProviderJSON is a JSON object format for US health care providers. 
 It is based on fields currently collected to receive or maintain 
 a National Provider Identifier (or NPI). ProviderJSON is the basis for 
