@@ -447,7 +447,7 @@ These are as follows:
    <td>initial_enumeration_date</td>
    <td>10</td>
    <td>N</td>
-   <td>Must be in YYYY=MM-DD format. This value is system generated. Value is
+   <td>Must be in YYYY-MM-DD format. This value is system generated. Value is
    same as enumeration_date unless record has been deactivated and reactivated.</td>
  </tr>
         
@@ -456,7 +456,7 @@ These are as follows:
    <td>enumeration_date</td>
    <td>10</td>
    <td>N</td>
-   <td>Must be in YYYY=MM-DD format. This value is system generated.</td>
+   <td>Must be in YYYY-MM-DD format. This value is system generated.</td>
  </tr>
         
  
@@ -464,7 +464,7 @@ These are as follows:
    <td>last_updated</td>
    <td>10</td>
    <td>N</td>
-   <td>Must be in YYYY=MM-DD format. This value is system generated.</td>
+   <td>Must be in YYYY-MM-DD format. This value is system generated.</td>
  </tr>
           
  
@@ -472,7 +472,7 @@ These are as follows:
    <td>date_of_death</td>
    <td>10</td>
    <td>N</td>
-   <td>Must be in YYYY=MM-DD format</td>
+   <td>Must be in YYYY-MM-DD format</td>
  </tr>
         
  
@@ -488,7 +488,9 @@ These are as follows:
    <td>mode</td>
    <td>1</td>
    <td>Y</td>
-   <td>Choices must be in ['W', 'P', 'E', 'C']</td>
+   <td>Choices must be in ['W(eb)', 'P(aper)', 'E(FI)', 'C', 'A(PI)']. Should always
+   be 'A' when using this API.
+   </td>
  </tr>
         
  
