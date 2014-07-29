@@ -41,7 +41,7 @@ Here is a high-level pseudo-code example:
         .
     }
 
-The object contains several high-level cmponents of information.
+The ProviderJSON object contains several top-level items.
 The `enumeration_type` acts a switch determining what is required and what is
 not. The `number` component contains a string of the enumeration number.
 `classification` is used when submitting this informartion via API to indicate
