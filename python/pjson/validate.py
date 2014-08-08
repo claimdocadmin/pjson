@@ -43,7 +43,7 @@ def validate_pjson(j):
     
     # Does it contain the top-level enumeration_type
     if not d.has_key("enumeration_type"):
-        error ="The JSON object does not contain enumeration_type."
+        error ="The JSON object does not contain an enumeration_type."
         errors.append(error)
         return errors
     

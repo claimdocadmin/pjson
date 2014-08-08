@@ -1,22 +1,38 @@
 ProviderJSON
 ============
 
-0.0.6
+0.0.9
 
 
-Quick Installation
-==================
+Quick Installation of Reference Implemntation
+=============================================
 
 A validation library(Python) and command line tool for validating ProviderJSON
-is contained in this repository.  the easiest way to install it is using `pip`.
+is contained in this repository.  The easiest way to install it is using `pip`.
+Open a terminal window and type:
 
 
-    pip install providerjson
+    sudo pip install providerjson
+
+
+Test it using the command line tool:
+
+
+    validate sample.json
+
+You can also use it in you own code like so:
+
+    
+    python
+    >>> from pjson.validate import validate_pjson
+    >>> validate.pjson('{"number": "12345"}')
+    >>> ['The JSON object does not contain an enumeration_type.']
+    >>>
 
 
 
-ProviderJSON Format
-===================
+ProviderJSON Format Definition
+==============================
 
 ProviderJSON is a JSON object format for US health care providers. 
 It is based on fields currently collected to receive or maintain 
@@ -62,7 +78,7 @@ information can be represented here.
 Enumeration Type
 ----------------
 
-This field is required and shall be one of the four values.
+This field is required and shall be one of these four values.
 
 
 * NPI-1 - An individual (human) provider.
@@ -169,7 +185,7 @@ These are as follows:
    <td>middle_name</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -178,7 +194,7 @@ These are as follows:
    <td>4</td>
    <td>N</td>
    <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
-       'VIII', 'IX', 'X']. Applies only to NPI-1</td>
+       'VIII', 'IX', 'X']. Applies only to NPI-1.</td>
  </tr>
         
  
@@ -186,7 +202,7 @@ These are as follows:
    <td>credential</td>
    <td>50</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -194,7 +210,7 @@ These are as follows:
    <td>doing_business_as</td>
    <td>300</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-2. The company DBA if different than legal_busness name.</td>
  </tr>
         
  
@@ -202,7 +218,7 @@ These are as follows:
    <td>sole_proprietor</td>
    <td>3</td>
    <td>N</td>
-   <td>Choices must be in ['', 'YES', 'NO']. Applies only to NPI-1</td>
+   <td>Choices must be in ['', 'YES', 'NO']. Applies only to NPI-1.</td>
  </tr>
         
  
@@ -210,7 +226,7 @@ These are as follows:
    <td>other_first_name_1</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -218,7 +234,7 @@ These are as follows:
    <td>other_first_name_2</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -226,7 +242,7 @@ These are as follows:
    <td>other_last_name_1</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -234,7 +250,7 @@ These are as follows:
    <td>other_last_name_2</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -242,7 +258,7 @@ These are as follows:
    <td>other_middle_name_1</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -250,7 +266,7 @@ These are as follows:
    <td>other_middle_name_2</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -266,7 +282,7 @@ These are as follows:
    <td>other_name_code_2</td>
    <td>1</td>
    <td>N</td>
-   <td>Choices must be in ['', '1', '2', '5']. Applies only to NPI-1</td>
+   <td>Choices must be in ['', '1', '2', '5']. Applies only to NPI-1.</td>
  </tr>
         
  
@@ -274,7 +290,7 @@ These are as follows:
    <td>other_name_credential_1</td>
    <td>20</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -282,7 +298,7 @@ These are as follows:
    <td>other_name_credential_2</td>
    <td>20</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -291,7 +307,7 @@ These are as follows:
    <td>5</td>
    <td>N</td>
    <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.']. 
-   Applies only to NPI-1</td>
+   Applies only to NPI-1.</td>
  </tr>
         
  
@@ -300,7 +316,7 @@ These are as follows:
    <td>5</td>
    <td>N</td>
    <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'].
-   Applies only to NPI-1</td>
+   Applies only to NPI-1.</td>
  </tr>
         
  
@@ -309,7 +325,7 @@ These are as follows:
    <td>4</td>
    <td>N</td>
    <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
-   'VIII', 'IX', 'X']. Applies only to NPI-1</td>
+   'VIII', 'IX', 'X']. Applies only to NPI-1.</td>
  </tr>
         
  
@@ -318,7 +334,7 @@ These are as follows:
    <td>4</td>
    <td>N</td>
    <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI',
-   'VII', 'VIII', 'IX', 'X']. Applies only to NPI-1</td>
+   'VII', 'VIII', 'IX', 'X']. Applies only to NPI-1.</td>
  </tr>
         
  
@@ -326,7 +342,7 @@ These are as follows:
    <td>organization_name</td>
    <td>300</td>
    <td>S</td>
-   <td>Required for NPI-2</td>
+   <td>Required for NPI-2.</td>
  </tr>
         
  
@@ -334,7 +350,7 @@ These are as follows:
    <td>organization_other_name</td>
    <td>300</td>
    <td>N</td>
-   <td>Applies only to NPI-2</td>
+   <td>Applies only to NPI-2.</td>
  </tr>
         
  
@@ -343,7 +359,7 @@ These are as follows:
    <td>1</td>
    <td>N</td>
    <td>Choices must be in ['', '3', '4', '5'].
-   Applies only to NPI-2
+   Applies only to NPI-2.
    </td>
  </tr>
         
@@ -384,7 +400,7 @@ These are as follows:
    <td>gender</td>
    <td>1</td>
    <td>S</td>
-   <td>Required for NPI-1. Choices must be in ['F', 'M', 'T']</td>
+   <td>Required for NPI-1. Choices must be in ['F', 'M', 'T'].</td>
  </tr>
         
  
@@ -392,7 +408,7 @@ These are as follows:
    <td>date_of_birth</td>
    <td>10</td>
    <td>S</td>
-   <td>Required for NPI-1. Format must be YYYY-MM-DD</td>
+   <td>Required for NPI-1. Format must be YYYY-MM-DD.</td>
  </tr>
         
  
@@ -404,7 +420,7 @@ These are as follows:
    'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA',
    'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND',
    'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA',
-   'WV', 'WI', 'WY', 'AS', 'FM', 'GU', 'MH', 'MP', 'PR', 'PW', 'VI', 'ZZ']</td>
+   'WV', 'WI', 'WY', 'AS', 'FM', 'GU', 'MH', 'MP', 'PR', 'PW', 'VI', 'ZZ'].</td>
  </tr>
         
  
@@ -431,7 +447,7 @@ These are as follows:
  'SO', 'ZA', 'GS', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE', 'CH', 'SY',
  'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC',
  'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VG',
- 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW']</td>
+ 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW'].</td>
  </tr>
         
  
@@ -472,7 +488,7 @@ These are as follows:
    <td>date_of_death</td>
    <td>10</td>
    <td>N</td>
-   <td>Must be in YYYY-MM-DD format</td>
+   <td>Must be in YYYY-MM-DD format.</td>
  </tr>
         
  
@@ -480,7 +496,7 @@ These are as follows:
    <td>reactivation_date</td>
    <td>None</td>
    <td>N</td>
-   <td></td>
+   <td>Date of reactivation.</td>
  </tr>
           
  
@@ -498,7 +514,7 @@ These are as follows:
    <td>status</td>
    <td>1</td>
    <td>N</td>
-   <td>Choices must be in ['E', 'P', 'A', 'D', 'R']</td>
+   <td>Choices must be in ['E', 'P', 'A', 'D', 'R'].</td>
  </tr>
         
  
@@ -506,7 +522,7 @@ These are as follows:
    <td>contact_method</td>
    <td>1</td>
    <td>N</td>
-   <td>Choices must be in ['E', 'M']</td>
+   <td>Choices must be in ['E', 'M'].</td>
  </tr>
         
  
@@ -514,7 +530,7 @@ These are as follows:
    <td>deactivated_details</td>
    <td>1000</td>
    <td>N</td>
-   <td></td>
+   <td>Optional details concering deactivation. Deacesed etc.</td>
  </tr>
         
  
@@ -522,7 +538,7 @@ These are as follows:
    <td>deactivation_date</td>
    <td>10</td>
    <td>N</td>
-   <td>Format must be YYYY-MM-DD</td>
+   <td>Format must be YYYY-MM-DD.</td>
  </tr>
         
  
@@ -530,7 +546,7 @@ These are as follows:
    <td>deactivation_reason_code</td>
    <td>2</td>
    <td>N</td>
-   <td>Choices must be in ['', 'DT', 'DB', 'FR', 'OT']</td>
+   <td>Choices must be in ['', 'DT', 'DB', 'FR', 'OT'].</td>
  </tr>
         
  
@@ -538,7 +554,9 @@ These are as follows:
    <td>deactivation_note</td>
    <td>1024</td>
    <td>N</td>
-   <td></td>
+   <td>
+   Optional deactivation note.
+   </td>
  </tr>
         
  
@@ -546,15 +564,15 @@ These are as follows:
    <td>deceased_notes</td>
    <td>1000</td>
    <td>N</td>
-   <td></td>
+   <td>ptional deceased notes.</td>
  </tr>
         
  
  <tr>
    <td>parent_organization</td>
-   <td>None</td>
+   <td>9</td>
    <td>N</td>
-   <td></td>
+   <td>A parent organization parent enumeration number (e.g. an NPI).</td>
  </tr>
         
  
@@ -562,7 +580,7 @@ These are as follows:
    <td>parent_organization_ein</td>
    <td>10</td>
    <td>N</td>
-   <td></td>
+   <td>A parent organization tax id.</td>
  </tr>
         
  
@@ -570,7 +588,7 @@ These are as follows:
    <td>parent_organization_legal_business_name</td>
    <td>300</td>
    <td>N</td>
-   <td></td>
+   <td>A parent organization's legal business name.</td>
  </tr>
         
  
@@ -578,7 +596,7 @@ These are as follows:
    <td>reactivation_note</td>
    <td>1024</td>
    <td>N</td>
-   <td></td>
+   <td>Note on reactivation</td>
  </tr>
         
  
@@ -586,7 +604,7 @@ These are as follows:
    <td>comments</td>
    <td>1024</td>
    <td>N</td>
-   <td></td>
+   <td>comments</td>
  </tr>
         
  
@@ -594,31 +612,31 @@ These are as follows:
    <td>authorized_official_credential</td>
    <td>20</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-2.</td>
  </tr>
         
  
  <tr>
    <td>authorized_official_email</td>
    <td>75</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-2.</td>
  </tr>
         
  
  <tr>
    <td>authorized_official_first_name</td>
    <td>150</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-2.</td>
  </tr>
         
  
  <tr>
    <td>authorized_official_last_name</td>
    <td>150</td>
-   <td>N</td>
-   <td></td>
+   <td>S</td>
+   <td>Required for NPI-2.</td>
  </tr>
         
  
@@ -626,7 +644,7 @@ These are as follows:
    <td>authorized_official_middle_name</td>
    <td>150</td>
    <td>N</td>
-   <td></td>
+   <td>Applies only to NPI-2.</td>
  </tr>
         
  
@@ -634,7 +652,8 @@ These are as follows:
    <td>authorized_official_prefix</td>
    <td>10</td>
    <td>N</td>
-   <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.']</td>
+   <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'].
+   Applies only to NPI-2.</td>
  </tr>
         
  
@@ -643,7 +662,7 @@ These are as follows:
    <td>4</td>
    <td>N</td>
    <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI',
-   'VII', 'VIII', 'IX', 'X']</td>
+   'VII', 'VIII', 'IX', 'X']. Applies only to NPI-2.</td>
  </tr>
         
  
@@ -651,7 +670,7 @@ These are as follows:
    <td>authorized_official_telephone_number</td>
    <td>20</td>
    <td>S</td>
-   <td>Required for NPI-2 only</td>
+   <td>Required for NPI-2 only.</td>
  </tr>
         
  
@@ -659,7 +678,7 @@ These are as follows:
    <td>authorized_official_telephone_extension</td>
    <td>10</td>
    <td>S</td>
-   <td>Required for NPI-2 only</td>
+   <td>Required for NPI-2 only.</td>
  </tr>
         
  
@@ -667,7 +686,7 @@ These are as follows:
    <td>authorized_official_title</td>
    <td>150</td>
    <td>S</td>
-   <td>Required for NPI-2 only</td>
+   <td>Required for NPI-2 only.</td>
  </tr>
         
  
@@ -675,7 +694,7 @@ These are as follows:
    <td>authorized_official_title_or_position</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-2</td>
+   <td>Applies only to NPI-2.</td>
  </tr>
         
  
@@ -683,7 +702,7 @@ These are as follows:
    <td>contact_person_credential</td>
    <td>20</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -691,7 +710,7 @@ These are as follows:
    <td>contact_person_email</td>
    <td>75</td>
    <td>S</td>
-   <td>Required for NPI-1</td>
+   <td>Required for NPI-1.</td>
  </tr>
         
  
@@ -699,7 +718,7 @@ These are as follows:
    <td>contact_person_first_name</td>
    <td>150</td>
    <td>S</td>
-   <td>Required for NPI-1</td>
+   <td>Required for NPI-1.</td>
  </tr>
         
  
@@ -715,7 +734,7 @@ These are as follows:
    <td>contact_person_middle_name</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -724,7 +743,7 @@ These are as follows:
    <td>5</td>
    <td>N</td>
    <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'].
-   Applies only to NPI-1</td>
+   Applies only to NPI-1.</td>
  </tr>
         
  
@@ -734,7 +753,7 @@ These are as follows:
    <td>N</td>
    <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI',
    'VII', 'VIII', 'IX', 'X'].
-   Applies only to NPI-1</td>
+   Applies only to NPI-1.</td>
  </tr>
         
  
@@ -758,7 +777,7 @@ These are as follows:
    <td>contact_person_title</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -766,7 +785,7 @@ These are as follows:
    <td>contact_person_title_or_position</td>
    <td>150</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td>Applies only to NPI-1.</td>
  </tr>
         
  
@@ -774,7 +793,7 @@ These are as follows:
    <td>website</td>
    <td>200</td>
    <td>N</td>
-   <td></td>
+   <td>A web url.</td>
  </tr>
         
  
@@ -782,15 +801,15 @@ These are as follows:
    <td>facebook_handle</td>
    <td>100</td>
    <td>N</td>
-   <td></td>
+   <td>A facebook handle.</td>
  </tr>
         
  
  <tr>
    <td>twitter_handle</td>
    <td>100</td>
-   <td>N</td>
-   <td></td>
+   <td>A twitter handle</td>
+   <td>A twitter handle</td>
  </tr>
         
  
@@ -806,7 +825,7 @@ These are as follows:
    <td>gravatar_email</td>
    <td>200</td>
    <td>N</td>
-   <td></td>
+   <td>a gravatar email for displaying an avatar with a profile.</td>
  </tr>
         
  
@@ -1106,33 +1125,25 @@ Licenses
 <tr>
   <td>number</td>
   <td>50</td>
-  <td>N</td>
-  <td>The number or identifier provided by the issuing organization.</td>
+  <td>Y</td>
+  <td>The unique number or identifier given to the license provided by
+  the issuing organization. Required if codified version not given</td>
 </tr>
 
 <tr>
   <td>type</td>
   <td>3</td>
-  <td>N</td>
-  <td>The license type. Choices according US-ISO 2./td>
+  <td>Y</td>
+  <td>The license type according to https://github.com/HHSIDEAlab/mlvs/blob/master/docs/USProviderLicenseTypesFeb2014.csv</td>
 </tr>
 
 
 <tr>
   <td>state</td>
-  <td>3</td>
-  <td>N</td>
-  <td>The license type. Choices according to https://github.com/HHSIDEAlab/mlvs/blob/master/docs/USProviderLicenseTypesFeb2014.csv</td>
-</tr>
-
-
-<tr>
-  <td>code</td>
-  <td>3</td>
+  <td>2</td>
   <td>Y</td>
-  <td>Codified [ST]-[PROVIDER_TYPE]-[NUMBER] format.</td>
+  <td>State according to ISO 3166-2:US.</td>
 </tr>
-
 
 
 </table>
