@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4
-
 # Written by Alan Viars
+
 import json, sys
 from pjson.validate_basic import validate_basic_dict
 from pjson.validate_addresses import validate_address_list
