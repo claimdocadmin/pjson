@@ -38,6 +38,6 @@ def validate_direct_address_list(l, enumeration_type):
             errors.append(error)
     
     
-        return errors
+    return errors
     
     

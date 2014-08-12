@@ -1,11 +1,11 @@
 ProviderJSON
 ============
 
-0.0.9
+0.0.11
 
 
-Quick Installation of Reference Implemntation
-=============================================
+Quick Installation of Reference Implementation
+==============================================
 
 A validation library(Python) and command line tool for validating ProviderJSON
 is contained in this repository.  The easiest way to install it is using `pip`.
