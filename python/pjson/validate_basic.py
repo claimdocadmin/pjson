@@ -196,12 +196,11 @@ def validate_basic_dict(d, enumeration_type, number=None):
             errors.append(error)
 
 
-        if d.get("name_suffix") and d.get("name_suffix") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
+        if d.get("name_suffix") and d.get("name_suffix").capitalize()  not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
                                         'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
             error = """name_suffix must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'
             """
             errors.append(error)
-
 
         if not d.get('sole_proprietor'):
             error = "sole_proprietor is required and must be in ('YES', 'NO')."
@@ -291,26 +290,26 @@ def validate_basic_dict(d, enumeration_type, number=None):
 
         #Validate the not required items NPI-1
 
-        if d.get("other_name_suffix_1") and d.get("other_name_suffix_1") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
+        if d.get("other_name_suffix_1") and d.get("other_name_suffix_1").capitalize()  not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
                                     'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
             error = """other_name_suffix_1 must be in Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
             errors.append(error)
         
-        if d.get("other_name_suffix_2") and d.get("other_name_suffix_2") not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
+        if d.get("other_name_suffix_2") and d.get("other_name_suffix_2").capitalize()  not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
                                     'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
             error = """other_name_suffix_2 must be in Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
             errors.append(error)
         
-        if d.get("name_prefix") and d.get("name_prefix") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
-            error = "other_name_prefix_1  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
-            errors.append(error)
+        if d.get("name_prefix") and d.get("name_prefix").capitalize() not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
+                error = "name_prefix  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
+                errors.append(error)
+    
         
-        
-        if d.get("other_name_prefix_1") and d.get("other_name_prefix_1") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
-            error = "other_name_prefix_1  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
-            errors.append(error)
+        if d.get("other_name_prefix_1")and d.get("other_name_prefix_1").capitalize()  not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
+                error = "other_name_prefix_1  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
+                errors.append(error)
             
-        if d.get("other_name_prefix_2") and d.get("other_name_prefix_2") not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
+        if d.get("other_name_prefix_2") and d.get("other_name_prefix_2").capitalize()  not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
             error = "other_name_prefix_2  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
             errors.append(error) 
     

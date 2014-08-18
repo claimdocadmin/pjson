@@ -4,19 +4,19 @@
 # Written by Alan Viars
 
 import json, sys
-from pjson.validate_basic import validate_basic_dict
-from pjson.validate_addresses import validate_address_list
-from pjson.validate_licenses import validate_license_list
-from pjson.validate_direct_addresses import validate_direct_address_list
-from pjson.validate_taxonomies import validate_taxonomy_list
-from pjson.validate_identifiers import validate_identifier_list
+#from pjson.validate_basic import validate_basic_dict
+#from pjson.validate_addresses import validate_address_list
+#from pjson.validate_licenses import validate_license_list
+#from pjson.validate_direct_addresses import validate_direct_address_list
+#from pjson.validate_taxonomies import validate_taxonomy_list
+#from pjson.validate_identifiers import validate_identifier_list
 
-#from validate_basic import validate_basic_dict
-#from validate_addresses import validate_address_list
-#from validate_licenses import validate_license_list
-#from validate_direct_addresses import validate_direct_address_list
-#from validate_taxonomies import validate_taxonomy_list
-#from validate_identifiers import validate_identifier_list
+from validate_basic import validate_basic_dict
+from validate_addresses import validate_address_list
+from validate_licenses import validate_license_list
+from validate_direct_addresses import validate_direct_address_list
+from validate_taxonomies import validate_taxonomy_list
+from validate_identifiers import validate_identifier_list
 
 
 
@@ -74,13 +74,23 @@ def validate_pjson(j):
 
 
     #Check for errors in the license section    
-    license_errors = validate_license_list(d['licenses'], d['enumeration_type'])
+    
+    if d.has_key('licenses'):
+        license_errors = validate_license_list(d['licenses'], d['enumeration_type'])
+    else:
+        license_errors = []
 
     taxonomy_errors = validate_taxonomy_list(d['taxonomies'], d['enumeration_type'])
     
-    identifier_errors = validate_identifier_list(d['identifiers'], d['enumeration_type'])
+    if d.has_key('identifiers'):
+        identifier_errors = validate_identifier_list(d['identifiers'], d['enumeration_type'])
+    else:
+        identifier_errors = []
     
-    direct_errors = validate_direct_address_list(d['direct_addresses'], d['enumeration_type'])
+    if d.has_key('direct_addresses'):
+        direct_errors = validate_direct_address_list(d['direct_addresses'], d['enumeration_type'])
+    else:
+        direct_errors = []
 
     errors = errors + basic_errors + address_errors + license_errors + \
                         direct_errors + taxonomy_errors + identifier_errors
