@@ -1,7 +1,7 @@
 ProviderJSON
 ============
 
-0.0.12
+0.0.13
 
 
 Quick Installation of Reference Implementation

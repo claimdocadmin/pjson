@@ -4,19 +4,19 @@
 # Written by Alan Viars
 
 import json, sys
-#from pjson.validate_basic import validate_basic_dict
-#from pjson.validate_addresses import validate_address_list
-#from pjson.validate_licenses import validate_license_list
-#from pjson.validate_direct_addresses import validate_direct_address_list
-#from pjson.validate_taxonomies import validate_taxonomy_list
-#from pjson.validate_identifiers import validate_identifier_list
+from pjson.validate_basic import validate_basic_dict
+from pjson.validate_addresses import validate_address_list
+from pjson.validate_licenses import validate_license_list
+from pjson.validate_direct_addresses import validate_direct_address_list
+from pjson.validate_taxonomies import validate_taxonomy_list
+from pjson.validate_identifiers import validate_identifier_list
 
-from validate_basic import validate_basic_dict
-from validate_addresses import validate_address_list
-from validate_licenses import validate_license_list
-from validate_direct_addresses import validate_direct_address_list
-from validate_taxonomies import validate_taxonomy_list
-from validate_identifiers import validate_identifier_list
+#from validate_basic import validate_basic_dict
+#from validate_addresses import validate_address_list
+#from validate_licenses import validate_license_list
+#from validate_direct_addresses import validate_direct_address_list
+#from validate_taxonomies import validate_taxonomy_list
+#from validate_identifiers import validate_identifier_list
 
 
 
