@@ -1,7 +1,7 @@
 ProviderJSON
 ============
 
-0.0.11
+0.0.12
 
 
 Quick Installation of Reference Implementation
@@ -1146,6 +1146,20 @@ Licenses
 </tr>
 
 
+<tr>
+  <td>status</td>
+  <td>2<2/td>
+  <td>N</td>
+  <td>Defaults to UNKNOWN. This is determinied by verification by the enumerator
+  and produced server side. If suplied, value must be in { "UNKNOWN", "ACTIVE",
+  "ACTIVE_WITH_RESTRICTIONS", "EXPIRED", "REVOKED", "DECEASED"]
+
+  
+  Values are ""Status</td>
+</tr>
+
+
+
 </table>
 
 
@@ -1166,22 +1180,25 @@ Identifiers
   <td>identifier</td>
   <td>20</td>
   <td>Y</td>
-  <td>The number or code issued by the issuing body.When populated all other fields are auto-populated.</td>
+  <td>The number or code issued by the issuing body. </td>
 </tr>
 
 
 <tr>
   <td>code</td>
-  <td>15</td>
+  <td>2</td>
   <td>Y</td>
-  <td>Codified identifier type.</td>
+  <td>Identifer Type code.  Accetable values are in ("", "Blank"),("01", "Other"),("02","Medicare UPIN"),
+    ("04","Medicare ID Type Unspecified"),("05", "Medicaid"),
+    ("06", "Medicare OSCAR/certification"), ("07", "Medicare NSC"),
+    ("08", "MEDICARE PIN")</td>
 </tr>
 
 <tr>
   <td>state</td>
-  <td>20</td>
+  <td>2</td>
   <td>Y</td>
-  <td>The number issued by the issuing body.</td>
+  <td>State according to ISO 3166-2:US.</td>
 </tr>
 
 <tr>

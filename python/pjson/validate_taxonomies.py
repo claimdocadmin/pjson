@@ -11,13 +11,13 @@ def validate_taxonomy_list(l, enumeration_type):
     primary_count  = 0
 
     for d in l:
-    
+        print d
         #check for required information
         if d.get('code') not in TAXONOMY_CODES:
             error = "%s : code (taxonomy) is not a valide taxonomy code. See http://www.wpc-edi.com/taxonomy" % d.get('code')
             errors.append(error)
-            
-        if type(d.get('primary')) != bool :
+        print   d.get('primary')  
+        if type(d.get('primary')) != type(True) :
             error = "%s : primay must be true or false." % (d.get('code'))
             errors.append(error)
         
@@ -26,7 +26,7 @@ def validate_taxonomy_list(l, enumeration_type):
     # check that only one taxonomy is marked as primary
     
     if primary_count != 1:
-        error = "Exactly 1 tddddaxonomy code must be marked as primary. The primary count is %s." % (primary_count)
+        error = "Exactly 1 taxonomy code must be marked as primary. The primary count is %s." % (primary_count)
         errors.append(error)
     
 
