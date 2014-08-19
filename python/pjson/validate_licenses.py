@@ -8,24 +8,24 @@ from choices import LICENSE_TYPE_CODES
 
 def validate_license_list(l, enumeration_type):
     errors = []
-    
+
     #define a max_values dict
     max_values = {
         'code'              : 50,
-        'status'           : 10, 
+        'status'           : 10,
         }
-    
-    #Test for max_length errors    
-    
+
+    #Test for max_length errors
+
     for d in l:
-        # form an address string.        
-        
+        # form an address string.
+
         for k in max_values.keys():
             if d.get(k):
                 if max_values[k] < len(d.get(k)):
                     error = "%s : %s max allowable length %s." % (d.get['code'], max_values[k])
                     errors.append(error)
-    
+
         if len(d.get('code')) < 7:
             #The code is to shourt to be valid
             error = "%s : License code is too short to be valid." % (d.get('code'))
@@ -35,8 +35,7 @@ def validate_license_list(l, enumeration_type):
             if license_code not in LICENSE_TYPE_CODES:
                 error = "%s : Licese code must be a valid license type code.  See https://github.com/HHSIDEAlab/mlvs/blob/master/docs/USProviderLicenseTypesFeb2014.csv" % (d.get('code'))
                 errors.append(error)
-            
-        return errors
-        
-    
-    
+
+    return errors
+
+
