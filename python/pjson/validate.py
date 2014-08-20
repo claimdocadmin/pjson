@@ -4,6 +4,7 @@
 # Written by Alan Viars
 
 import json, sys
+
 from pjson.validate_basic import validate_basic_dict
 from pjson.validate_addresses import validate_address_list
 from pjson.validate_licenses import validate_license_list
