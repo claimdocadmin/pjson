@@ -1,7 +1,7 @@
 ProviderJSON
 ============
 
-0.0.14
+0.0.15
 
 
 Quick Installation of Reference Implementation
@@ -22,7 +22,7 @@ Test it using the command line tool:
 
 You can also use it in you own code like so:
 
-    
+
     python
     >>> from pjson.validate import validate_pjson
     >>> validate.pjson('{"number": "12345"}')
@@ -42,16 +42,17 @@ Here is a high-level pseudo-code example:
 
 
     {
-        "enumeration_type" : "NPI-1",
-        "number"           : "114283205",
-        "classification"   : "C",
-        "basic"            : {...},
-        "addresses"        : [...],
-        "taxonomies"       : [... ],
-        "licenses"         : [...],
-        "identifiers"      : [...],
-        "specialties"      : [...],
-        "direct-addresses" : [...],
+        "enumeration_type"           : "NPI-1",
+        "number"                     : "114283205",
+        "last_updated_date_epoch"    : 1409675065,
+        "created_date_epoch"         : 1409663451,
+        "basic"                      : {...},
+        "addresses"                  : [...],
+        "taxonomies"                 : [... ],
+        "licenses"                   : [...],
+        "identifiers"                : [...],
+        "specialties"                : [...],
+        "direct-addresses"           : [...],
         .
         .
         .
@@ -78,7 +79,7 @@ information can be represented here.
 Enumeration Type
 ----------------
 
-This field is required and shall be one of these four values.
+The `enumeration_type` is required and shall be one of these four values.
 
 
 * NPI-1 - An individual (human) provider.
@@ -91,23 +92,30 @@ This field is required and shall be one of these four values.
 Number
 ------
 
-The assigned enumeration number (e.g. an NPI). This field should
+The `number` is the assigned enumeration number (e.g. an NPI). This field should
 be left blank when submitting a new enumeration request, but
 must be provided on change requests. Number is always length 9 where 
 the  last number is a checkdigit according to the Luhn algorithm. 
 Please refer to the NPI final rule for more infromation.
 
 
-Classification
---------------
+Last Updated Epoch
+-------------------
 
-This field only when submitting to the API and shall indicate weather
-the request is for a new enumeration or to change an existing enumeration.
-The two possible values are:
+The `last_updated_epoch` is an integer of  the Unix epoch for the last update 
+to the enumeration. 
+A Unx epoch (or Unix time or POSIX time or Unix timestamp) is the number 
+of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), 
+not counting leap seconds (in ISO8601: 1970-01-01T00:00:00Z).
 
 
-* N - For a (N)ew enumeration request.
-* C - To (C)hange an existing enumeration.
+Created Epoch
+-------------
+
+The `created_epoch` is an integer of  the Unix epoch for the creation of the enumeration. 
+A Unx epoch (or Unix time or POSIX time or Unix timestamp) is the number 
+of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), 
+not counting leap seconds (in ISO8601: 1970-01-01T00:00:00Z).
 
 
 
