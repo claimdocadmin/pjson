@@ -12,7 +12,7 @@ def validate_basic_dict(d, enumeration_type, number=None):
     is empty then basic section is valid.
     """
     errors =[]
-
+    warnings = []
 
      #check values do not exceed max length
 
@@ -156,12 +156,6 @@ def validate_basic_dict(d, enumeration_type, number=None):
         error = "mode must be in ('W','P','E', 'A')."
         errors.append(error)
 
-
-    if d.get("classification") and d.get("classification") not in ('N', 'C'):
-        # Note: This is ony required when submitting for a new NPI or to change
-        # an existing one
-        error = "classification must be in ('N','C')."
-        errors.append(error)
 
 
     if d.get("status") and d.get("status") not in ('E', 'P', 'A', 'D', 'R'):

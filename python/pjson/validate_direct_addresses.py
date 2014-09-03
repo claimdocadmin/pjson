@@ -15,9 +15,9 @@ def validate_direct_address_list(l, enumeration_type):
                  }
     
     #Test for max_length errors    
-    
+    i=0
     for d in l:
-
+        
         for k in max_values.keys():
             if d.get(k):
                 if max_values[k] < len(d.get(k)):
@@ -26,7 +26,7 @@ def validate_direct_address_list(l, enumeration_type):
     
         #check for required information
         if not d.get('email'):
-            error = "%s : email is required." % d.get('email')
+            error = "email is required for direct_addresses[%s]." % i
             errors.append(error)
     
         if type(d.get('public')) != bool :
@@ -36,6 +36,7 @@ def validate_direct_address_list(l, enumeration_type):
         if not d.get('organization'):
             error = "%s : organization is required." % (d.get('email'))
             errors.append(error)
+        i+=1
     
     
     return errors

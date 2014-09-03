@@ -67,7 +67,7 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
 
 
 setup(name="providerjson",
-      version="0.0.14",
+      version="0.0.15",
       description="Provider JSON - Command Line Utitlity and Python Library",
       long_description="""Outputs a JSON array of errors found in a Provider JSON string or file.""",
       author="Alan Viars",
@@ -76,6 +76,6 @@ setup(name="providerjson",
       download_url="https://gitbub.com/hhsidealab/pjson/tarball/master",
       packages=packages,
       package_data={},
-      scripts=['pjson/validate.py',
+      scripts=['pjson/validate-pjson',
                ]
       )
