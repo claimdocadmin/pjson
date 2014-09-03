@@ -18,15 +18,25 @@ Open a terminal window and type:
 Test it using the command line tool:
 
 
-    validate sample.json
+    validate-pjson sample.json
+
+This will return a JSON object with arrays of errors and warnings. A clean record would
+look like this.
+
+    {
+        "errors": [], 
+        "warnings": []
+    }
+
+
 
 You can also use it in you own code like so:
 
 
     python
-    >>> from pjson.validate import validate_pjson
-    >>> validate.pjson('{"number": "12345"}')
-    >>> ['The JSON object does not contain an enumeration_type.']
+    >>> from pjson.validate_pjson import validate_pjson
+    >>> validate_pjson('{"number": "12345"}')
+    >>> {'errors': ['The JSON object does not contain an enumeration_type.'], 'warnings': []}
     >>>
 
 
