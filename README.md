@@ -54,8 +54,8 @@ Here is a high-level pseudo-code example:
     {
         "enumeration_type"           : "NPI-1",
         "number"                     : "114283205",
-        "last_updated_date_epoch"    : 1409675065,
-        "created_date_epoch"         : 1409663451,
+        "last_updated_epoch"         : 1409675065,
+        "created_epoch"              : 1409663451,
         "basic"                      : {...},
         "addresses"                  : [...],
         "taxonomies"                 : [... ],
