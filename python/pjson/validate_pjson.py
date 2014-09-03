@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4
 # Written by Alan Viars
-
 import json, sys
 
 from pjson.validate_basic import validate_basic_dict
@@ -12,12 +11,12 @@ from pjson.validate_direct_addresses import validate_direct_address_list
 from pjson.validate_taxonomies import validate_taxonomy_list
 from pjson.validate_identifiers import validate_identifier_list
 
-# from validate_basic import validate_basic_dict
-# from validate_addresses import validate_address_list
-# from validate_licenses import validate_license_list
-# from validate_direct_addresses import validate_direct_address_list
-# from validate_taxonomies import validate_taxonomy_list
-# from validate_identifiers import validate_identifier_list
+#from validate_basic import validate_basic_dict
+#from validate_addresses import validate_address_list
+#from validate_licenses import validate_license_list
+#from validate_direct_addresses import validate_direct_address_list
+#from validate_taxonomies import validate_taxonomy_list
+#from validate_identifiers import validate_identifier_list
 
 
 
@@ -27,45 +26,65 @@ def validate_pjson(j):
     is empty then the file is valid.
     """
     errors =[]
-
+    warnings =[]
+    response = { "errors": [], "warnings": [] }
+    
+    
     # Does the string contain JSON
     try:
         d = json.loads(j)
     except:
         error ="The string did not contain valid JSON."
         errors.append(error)
-        return errors
+        response["errors"] = errors
+        return response
 
     # Is it a dict {} (JSON object equiv)?
     if type(d)!=type({}):
         error ="The JSON string did not contain a JSON object i.e. {}."
         errors.append(error)
-        return errors
+        response["errors"] = errors
+        return response
 
     # Does it contain the top-level enumeration_type
     if not d.has_key("enumeration_type"):
         error ="The JSON object does not contain an enumeration_type."
         errors.append(error)
-        return errors
-
-    # Does it contain the top-level enumeration_type
-    if d.get("classification") not in ('N', 'C'):
-        error ="The JSON object does not contain a classification. Values must be either (N)ew or (C)hange"
-        errors.append(error)
-        return errors
+        response["errors"] = errors
+        return response
 
 
     # Is the enumeration_type a valid?
     if d["enumeration_type"] not in ("NPI-1", "NPI-2", "OEID", "HPID"):
         error ="enumeration_type must be one of these: ('NPI-1', 'NPI-2', 'OEID', 'HPID')"
         errors.append(error)
-        return errors
+        response["errors"] = errors
+        return response
 
     #If a number is present we assume this is an update.
     if not d.has_key("number"):
         number = None
     else:
         number = d['number']
+
+    # Sanity check epoch dates
+    if d.has_key("last_updated_date_epoch"):
+        if type(d["last_updated_date_epoch"]) != type(1):
+            warning ="last_updated_date_epoch is not an integer."
+            warnings.append(warning)
+    else:
+        warning ="last_updated_date_epoch is missing."
+        warnings.append(warning)
+            
+    if d.has_key("created_date_epoch"):
+        if type(d["created_date_epoch"]) != type(1):
+            warning ="created_date_epoch is not an integer."
+            warnings.append(warning)
+    else:
+        warning ="created_date_epoch is missing."
+        warnings.append(warning)
+
+
 
     #Check for errors in the basic section
     basic_errors = validate_basic_dict(d['basic'], d['enumeration_type'], number)
@@ -97,14 +116,16 @@ def validate_pjson(j):
     errors = errors + basic_errors + address_errors + license_errors + \
                         direct_errors + taxonomy_errors + identifier_errors
 
-    return errors
+    response["errors"] = errors
+    response["warnings"] = warnings
+    return response
 
 
 if __name__ == "__main__":
 
     if len(sys.argv)<2:
-        print "You must suppy a ProviderJSON file to validate"
-        print "Example: python validate.py [ProivderJSON]"
+        print "You must suppy a ProviderJSON file to validate."
+        print "Usage: validate-pjson [ProivderJSON]"
         sys.exit(1)
     else:
         pjson_file = sys.argv[1]
