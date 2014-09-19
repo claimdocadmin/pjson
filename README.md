@@ -1,7 +1,7 @@
 ProviderJSON
 ============
 
-0.0.15
+0.0.16
 
 
 Quick Installation of Reference Implementation
@@ -15,10 +15,17 @@ Open a terminal window and type:
     sudo pip install providerjson
 
 
-Test it using the command line tool:
+Test it using the command line tool on Unixlike systems:
 
 
     validate-pjson sample.json
+    
+    
+On Windows it will be something like:
+
+
+    python c:\Python27\Scrips\validate-pjson sample.json
+
 
 This will return a JSON object with arrays of errors and warnings. A clean record would
 look like this.
