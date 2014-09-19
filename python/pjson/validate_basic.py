@@ -251,11 +251,11 @@ def validate_basic_dict(d, enumeration_type, number=None):
             error = "An NPI-1 individual provider must supppy an SSN or an EIN."
             errors.append(error)
 
-        if d.get('ssn') and len(d.get('ssn')) != 9 :
+        if d.get('ssn') and len(str(d.get('ssn'))) != 9 :
             error = "SSN must be 9 digits."
             errors.append(error)
 
-        if d.get('itin') and len(d.get('itin')) != 9 :
+        if d.get('itin') and len(str(d.get('itin'))) != 9 :
             error = "ITIN must be 9 digits."
             errors.append(error)
 
@@ -325,7 +325,7 @@ def validate_basic_dict(d, enumeration_type, number=None):
             error = "EIN is required for a type-2 organization provider."
             errors.append(error)
 
-        if d.get('ein') and len(d.get('ein')) != 9 :
+        if d.get('ein') and len(str(d.get('ein'))) != 9 :
             error = "EIN must be 9 digits."
             errors.append(error)
 
@@ -344,7 +344,5 @@ def validate_basic_dict(d, enumeration_type, number=None):
         if not d.get('authorized_official_telephone_number'):
             error = "authorized_official_telephone_number is required for a type-2 organization provider."
             errors.append(error)
-
-
 
     return errors
