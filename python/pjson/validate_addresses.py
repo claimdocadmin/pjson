@@ -43,9 +43,10 @@ def validate_address_list(l, enumeration_type):
 
         for k in max_values.keys():
             if d.get(k):
-                if max_values[k] < len(d.get(k)):
-                    error = "%s : %s max allowable length %s." % (address_string, k, max_values[k])
-                    errors.append(error)
+
+                    if max_values[k] < len(str(d.get(k))):
+                        error = "%s : %s max allowable length %s." % (address_string, k, max_values[k])
+                        errors.append(error)
 
         #check for required information
 

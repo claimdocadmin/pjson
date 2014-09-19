@@ -80,18 +80,18 @@ def validate_basic_dict(d, enumeration_type, number=None):
                 'authorized_official_telephone_number'      : 12,
                 'authorized_official_telephone_extension'   : 12,
                 'authorized_official_title_or_position'     : 300,
-                'website'                       : 1024,
-                'gravatar_email'                : 200,
-                'facebook_handle'               : 100,
-                'twitter_handle'                : 100,
-                'public_email'                  : 75,
-                'driving_directions'            : 1024,
-                'bio_headline'                  : 256,
+                'website'                                   : 1024,
+                'gravatar_email'                            : 200,
+                'facebook_handle'                           : 100,
+                'twitter_handle'                            : 100,
+                'public_email'                              : 75,
+                'driving_directions'                        : 1024,
+                'bio_headline'                              : 256,
                 }
 
     for k in max_values.keys():
         if d.get(k):
-            if max_values[k] < len(d.get(k)):
+            if max_values[k] < len(str(d.get(k))):
                 error = "%s max allowable length %s." % (k, max_values[k])
                 errors.append(error)
 
