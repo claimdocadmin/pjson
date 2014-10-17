@@ -1,7 +1,7 @@
 ProviderJSON
 ============
 
-0.0.17
+0.0.18
 
 
 Quick Installation of Reference Implementation
@@ -60,16 +60,17 @@ Here is a high-level pseudo-code example:
 
     {
         "enumeration_type"           : "NPI-1",
-        "number"                     : "114283205",
+        "number"                     : 114283205,
         "last_updated_epoch"         : 1409675065,
         "created_epoch"              : 1409663451,
         "basic"                      : {...},
+        "other_names"                : [...],
         "addresses"                  : [...],
         "taxonomies"                 : [... ],
         "licenses"                   : [...],
         "identifiers"                : [...],
         "specialties"                : [...],
-        "direct-addresses"           : [...],
+        "direct_addresses"           : [...],
         .
         .
         .
@@ -109,8 +110,8 @@ The `enumeration_type` is required and shall be one of these four values.
 Number
 ------
 
-The `number` is the assigned enumeration number (e.g. an NPI). This field should
-be left blank when submitting a new enumeration request, but
+The `number` is the assigned enumeration number (e.g. an NPI). This integer
+field should be left blank when submitting a new enumeration request, but
 must be provided on change requests. Number is always length 9 where 
 the  last number is a checkdigit according to the Luhn algorithm. 
 Please refer to the NPI final rule for more infromation.
@@ -121,7 +122,7 @@ Last Updated Epoch
 
 The `last_updated_epoch` is an integer of  the Unix epoch for the last update 
 to the enumeration. 
-A Unx epoch (or Unix time or POSIX time or Unix timestamp) is the number 
+A Unix epoch (or Unix time or POSIX time or Unix timestamp) is the number 
 of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), 
 not counting leap seconds (in ISO8601: 1970-01-01T00:00:00Z).
 
@@ -129,7 +130,7 @@ not counting leap seconds (in ISO8601: 1970-01-01T00:00:00Z).
 Created Epoch
 -------------
 
-The `created_epoch` is an integer of  the Unix epoch for the creation of the enumeration. 
+The `created_epoch` is an integer of  the Unix epoch for the creation of the enumeration.
 A Unx epoch (or Unix time or POSIX time or Unix timestamp) is the number 
 of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT), 
 not counting leap seconds (in ISO8601: 1970-01-01T00:00:00Z).
@@ -165,8 +166,8 @@ Requirements for a Health Plan Identifier (HPID)
 * taxonomies - at least one and one should be marked as primary.
 
 
-Basic
------
+Basic (basic object)
+--------------------
 
 `basic` contains an object (`{}`) of basic demographic inforation that is not
 repeated.  The information is based on the NPI final rule, but includes some
@@ -204,16 +205,16 @@ These are as follows:
    <td>S</td>
    <td>Required for NPI-1</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>middle_name</td>
    <td>150</td>
    <td>N</td>
    <td>Applies only to NPI-1.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>name_suffix</td>
    <td>4</td>
@@ -221,222 +222,72 @@ These are as follows:
    <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
        'VIII', 'IX', 'X']. Applies only to NPI-1.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>credential</td>
    <td>50</td>
    <td>N</td>
    <td>Applies only to NPI-1.</td>
  </tr>
-        
- 
- <tr>
-   <td>doing_business_as</td>
-   <td>300</td>
-   <td>N</td>
-   <td>Applies only to NPI-2. The company DBA if different than legal_busness name.</td>
- </tr>
-        
- 
+
+
  <tr>
    <td>sole_proprietor</td>
    <td>3</td>
    <td>N</td>
-   <td>Choices must be in ['', 'YES', 'NO']. Applies only to NPI-1.</td>
+   <td>Applies only to NPI-1. Choices must be in ['YES', 'NO']. .</td>
  </tr>
-        
- 
- <tr>
-   <td>other_first_name_1</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_first_name_2</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_last_name_1</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_last_name_2</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_middle_name_1</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_middle_name_2</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_code_1</td>
-   <td>1</td>
-   <td>N</td>
-   <td>Choices must be in ['', '1', '2', '5']. Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_code_2</td>
-   <td>1</td>
-   <td>N</td>
-   <td>Choices must be in ['', '1', '2', '5']. Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_credential_1</td>
-   <td>20</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_credential_2</td>
-   <td>20</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_prefix_1</td>
-   <td>5</td>
-   <td>N</td>
-   <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.']. 
-   Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_prefix_2</td>
-   <td>5</td>
-   <td>N</td>
-   <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'].
-   Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_suffix_1</td>
-   <td>4</td>
-   <td>N</td>
-   <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
-   'VIII', 'IX', 'X']. Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>other_name_suffix_2</td>
-   <td>4</td>
-   <td>N</td>
-   <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI',
-   'VII', 'VIII', 'IX', 'X']. Applies only to NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>organization_name</td>
-   <td>300</td>
-   <td>S</td>
-   <td>Required for NPI-2.</td>
- </tr>
-        
- 
- <tr>
-   <td>organization_other_name</td>
-   <td>300</td>
-   <td>N</td>
-   <td>Applies only to NPI-2.</td>
- </tr>
-        
- 
- <tr>
-   <td>organization_other_name_code</td>
-   <td>1</td>
-   <td>N</td>
-   <td>Choices must be in ['', '3', '4', '5'].
-   Applies only to NPI-2.
-   </td>
- </tr>
-        
- 
+
+
+
  <tr>
    <td>organizational_subpart</td>
-   <td>None</td>
-   <td>N</td>
-   <td>Applies only to NPI-2.</td>
+   <td>Boolean</td>
+   <td>S</td>
+   <td>Applies only to NPI-2. true or false.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>ssn</td>
    <td>9</td>
    <td>S</td>
    <td>Required for NPI-1 if no itin is provided.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>ein</td>
    <td>9</td>
    <td>S</td>
    <td>Required for NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>itin</td>
    <td>9</td>
    <td>S</td>
    <td>Required for NPI-1 if no ssn is provided.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>gender</td>
    <td>1</td>
    <td>S</td>
-   <td>Required for NPI-1. Choices must be in ['F', 'M', 'T'].</td>
+   <td>Required for NPI-1. Choices must be in ['F', 'M'].</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>date_of_birth</td>
    <td>10</td>
    <td>S</td>
    <td>Required for NPI-1. Format must be YYYY-MM-DD.</td>
  </tr>
-        
- 
+
  <tr>
    <td>state_of_birth</td>
    <td>2</td>
@@ -447,13 +298,13 @@ These are as follows:
    'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA',
    'WV', 'WI', 'WY', 'AS', 'FM', 'GU', 'MH', 'MP', 'PR', 'PW', 'VI', 'ZZ'].</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>country_of_birth</td>
    <td>2</td>
-   <td>N</td>
-   <td>Choices must be in ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ',
+   <td>S</td>
+   <td>Applies to NPI-1.Choices must be in ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ',
    'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE',
    'BZ', 'BJ', 'BM', 'BT', 'BO', 'BQ', 'BA', 'BW', 'BV', 'BR', 'IO', 'BN', 'BG',
    'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC',
@@ -474,16 +325,9 @@ These are as follows:
  'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VG',
  'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW'].</td>
  </tr>
-        
- 
- <tr>
-   <td>number</td>
-   <td>9</td>
-   <td>N</td>
-   <td>This value is system generated upon creation. </td>
- </tr>
-        
- 
+
+
+
  <tr>
    <td>initial_enumeration_date</td>
    <td>10</td>
@@ -491,188 +335,185 @@ These are as follows:
    <td>Must be in YYYY-MM-DD format. This value is system generated. Value is
    same as enumeration_date unless record has been deactivated and reactivated.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>enumeration_date</td>
    <td>10</td>
    <td>N</td>
    <td>Must be in YYYY-MM-DD format. This value is system generated.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>last_updated</td>
    <td>10</td>
    <td>N</td>
    <td>Must be in YYYY-MM-DD format. This value is system generated.</td>
  </tr>
-          
- 
+
+
  <tr>
    <td>date_of_death</td>
    <td>10</td>
    <td>N</td>
-   <td>Must be in YYYY-MM-DD format.</td>
+   <td>Date of death. System generated from SSA. Must be in YYYY-MM-DD format.</td>
  </tr>
-        
- 
- <tr>
+
+
+<tr>
    <td>reactivation_date</td>
-   <td>None</td>
+   <td>10</td>
    <td>N</td>
-   <td>Date of reactivation.</td>
+   <td>Date of reactivation. Must be in YYYY-MM-DD format.</td>
  </tr>
-          
- 
+
+
  <tr>
    <td>mode</td>
    <td>1</td>
-   <td>Y</td>
-   <td>Choices must be in ['W(eb)', 'P(aper)', 'E(FI)', 'C', 'A(PI)']. Should always
-   be 'A' when using this API.
+   <td>N</td>
+   <td> System generated. Choices must be in ['(W)eb', '(P)aper', '(E)FI',  '(A)PI']. Should always be 'A' when using the API and 'W' when using the web interface.
    </td>
  </tr>
-        
- 
+
+
  <tr>
    <td>status</td>
    <td>1</td>
    <td>N</td>
-   <td>Choices must be in ['E', 'P', 'A', 'D', 'R'].</td>
+   <td>Choices must be in ['E(diting)', 'P(ending)', '(A)ctive', '(D)eactive', '(R)evoked']. System generated.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>contact_method</td>
    <td>1</td>
    <td>N</td>
-   <td>Choices must be in ['E', 'M'].</td>
+   <td>Defaults to email. Choices must be in ['(E)mail', '(M)ail'].</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>deactivated_details</td>
    <td>1000</td>
    <td>N</td>
-   <td>Optional details concering deactivation. Deacesed etc.</td>
+   <td>Optional details concering deactivation. Deacesed etc. This information is for the Enuemrator only.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>deactivation_date</td>
    <td>10</td>
    <td>N</td>
-   <td>Format must be YYYY-MM-DD.</td>
+   <td>Deactivation Date. System generated. Format must be YYYY-MM-DD.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>deactivation_reason_code</td>
    <td>2</td>
    <td>N</td>
-   <td>Choices must be in ['', 'DT', 'DB', 'FR', 'OT'].</td>
+   <td>Choices must be in ['', 'DT', 'DB', 'FR', 'OT']. System generated.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>deactivation_note</td>
    <td>1024</td>
    <td>N</td>
-   <td>
-   Optional deactivation note.
-   </td>
+   <td>Optional deactivation note.  This information is for the Enuemrator only.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>deceased_notes</td>
    <td>1000</td>
    <td>N</td>
-   <td>ptional deceased notes.</td>
+   <td>Optional deceased notes. This information is for the Enuemrator only</td>
  </tr>
-        
- 
- <tr>
-   <td>parent_organization</td>
-   <td>9</td>
-   <td>N</td>
-   <td>A parent organization parent enumeration number (e.g. an NPI).</td>
- </tr>
-        
- 
+
+
+
  <tr>
    <td>parent_organization_ein</td>
-   <td>10</td>
+   <td>Boolean</td>
    <td>N</td>
-   <td>A parent organization tax id.</td>
+   <td>'true or 'false'.Applies only to NPI-2. A parent organization tax id.</td>
  </tr>
-        
- 
+
+ <tr>
+   <td>parent_organization_ein</td>
+   <td>9</td>
+   <td>S</td>
+   <td>A parent organization tax id. Applies only to NPI-2. Required when subpart is true.</td>
+ </tr>
+
+
  <tr>
    <td>parent_organization_legal_business_name</td>
    <td>300</td>
-   <td>N</td>
-   <td>A parent organization's legal business name.</td>
+   <td>S</td>
+   <td>Applies only to NPI-2. A parent organization's legal business name. Required when subpart is true.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>reactivation_note</td>
    <td>1024</td>
    <td>N</td>
    <td>Note on reactivation</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>comments</td>
    <td>1024</td>
    <td>N</td>
-   <td>comments</td>
+   <td>Used only by the enuemerator and cannot be submitted or returned in API results./td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_credential</td>
    <td>20</td>
    <td>N</td>
    <td>Applies only to NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_email</td>
    <td>75</td>
-   <td>S</td>
-   <td>Required for NPI-2.</td>
+   <td>N</td>
+   <td>Applies only to NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_first_name</td>
    <td>150</td>
    <td>S</td>
    <td>Required for NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_last_name</td>
    <td>150</td>
    <td>S</td>
    <td>Required for NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_middle_name</td>
    <td>150</td>
    <td>N</td>
    <td>Applies only to NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_prefix</td>
    <td>10</td>
@@ -680,8 +521,8 @@ These are as follows:
    <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'].
    Applies only to NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_suffix</td>
    <td>4</td>
@@ -689,80 +530,46 @@ These are as follows:
    <td>Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI',
    'VII', 'VIII', 'IX', 'X']. Applies only to NPI-2.</td>
  </tr>
-        
- 
+
  <tr>
    <td>authorized_official_telephone_number</td>
-   <td>20</td>
-   <td>S</td>
-   <td>Required for NPI-2 only.</td>
- </tr>
-        
- 
- <tr>
-   <td>authorized_official_telephone_extension</td>
    <td>10</td>
    <td>S</td>
    <td>Required for NPI-2 only.</td>
  </tr>
-        
- 
+
+
  <tr>
-   <td>authorized_official_title</td>
-   <td>150</td>
-   <td>S</td>
-   <td>Required for NPI-2 only.</td>
+   <td>authorized_official_telephone_extension</td>
+   <td>10</td>
+   <td>N</td>
+   <td>Applies for NPI-2 only.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>authorized_official_title_or_position</td>
    <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-2.</td>
+   <td>S</td>
+   <td>Required for NPI-2.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>contact_person_credential</td>
    <td>20</td>
    <td>N</td>
-   <td>Applies only to NPI-1.</td>
+   <td>Optional</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>contact_person_email</td>
    <td>75</td>
-   <td>S</td>
-   <td>Required for NPI-1.</td>
+   <td>Y</td>
+   <td>Required if the person has an email.</td>
  </tr>
-        
- 
- <tr>
-   <td>contact_person_first_name</td>
-   <td>150</td>
-   <td>S</td>
-   <td>Required for NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>contact_person_last_name</td>
-   <td>150</td>
-   <td>S</td>
-   <td>Required for NPI-1.</td>
- </tr>
-        
- 
- <tr>
-   <td>contact_person_middle_name</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
+
  <tr>
    <td>contact_person_prefix</td>
    <td>5</td>
@@ -770,8 +577,30 @@ These are as follows:
    <td>Choices must be in ['Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'].
    Applies only to NPI-1.</td>
  </tr>
-        
- 
+
+ <tr>
+   <td>contact_person_first_name</td>
+   <td>150</td>
+   <td>Y</td>
+   <td>Required for NPI-1.</td>
+ </tr>
+
+ <tr>
+   <td>contact_person_last_name</td>
+   <td>150</td>
+   <td>Y</td>
+   <td>Required.</td>
+ </tr>
+
+
+ <tr>
+   <td>contact_person_middle_name</td>
+   <td>150</td>
+   <td>Y</td>
+   <td>Applies only to NPI-1.</td>
+ </tr>
+
+
  <tr>
    <td>contact_person_suffix</td>
    <td>4</td>
@@ -780,88 +609,81 @@ These are as follows:
    'VII', 'VIII', 'IX', 'X'].
    Applies only to NPI-1.</td>
  </tr>
-        
+
+
+ <tr>
+   <td>contact_person_telephone_number</td>
+   <td>20</td>
+   <td>Y</td>
+   <td>Required for NPI-1 and NPI-2 if the contact person has a telephone number.
+   </td>
+ </tr>
+
  
  <tr>
    <td>contact_person_telephone_extension</td>
    <td>10</td>
    <td>N</td>
-   <td>Applies only to NPI-1</td>
+   <td></td>
  </tr>
-        
- 
- <tr>
-   <td>contact_person_telephone_number</td>
-   <td>20</td>
-   <td>S</td>
-   <td>Required for NPI-1 if the contact person has a telephone number.</td>
- </tr>
-        
- 
- <tr>
-   <td>contact_person_title</td>
-   <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
- </tr>
-        
- 
+
+
  <tr>
    <td>contact_person_title_or_position</td>
    <td>150</td>
-   <td>N</td>
-   <td>Applies only to NPI-1.</td>
+   <td>Y</td>
+   <td></td>
  </tr>
-        
- 
+
+
  <tr>
    <td>website</td>
    <td>200</td>
    <td>N</td>
-   <td>A web url.</td>
+   <td>A website url.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>facebook_handle</td>
    <td>100</td>
    <td>N</td>
    <td>A facebook handle.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>twitter_handle</td>
    <td>100</td>
    <td>A twitter handle</td>
    <td>A twitter handle</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>public_email</td>
    <td>75</td>
    <td>N</td>
    <td></td>
  </tr>
-        
- 
+
+
  <tr>
    <td>gravatar_email</td>
    <td>200</td>
    <td>N</td>
    <td>a gravatar email for displaying an avatar with a profile.</td>
  </tr>
-        
- 
+
+
  <tr>
    <td>driving_directions</td>
    <td>256</td>
    <td>N</td>
    <td></td>
  </tr>
-        
- 
+
+
  <tr>
    <td>bio_headline</td>
    <td>255</td>
@@ -871,8 +693,104 @@ These are as follows:
 </table>
 
 
-Addresses
----------
+Other Names (other_names)
+-------------------------
+<table>
+ <tr>
+  <td>Name</td>
+  <td>Max Length</td>
+  <td>Required</td>
+  <td>Notes</td>
+</tr>
+
+<tr>
+  <td>Type</td>
+  <td>35</td>
+  <td>N</td>
+  <td>System generated from "code" for readability.</td>
+</tr>
+
+<tr>
+  <td>code</td>
+  <td>1</td>
+  <td>Y</td>
+  <td> Determines the type of other_name. Values must be in
+  	("","Blank"),
+    ("1","Former Name"),
+    ("2","Professional Name"),
+    ("3","Doing Business As"),
+    ("4","Former Legal Business Name"),
+    ("5","Other Name").<br>
+    Codes "1" and "2"refer only to NPI-1. <br>
+    4 refers only to NPI-2.<br>
+    5 refers to NPI-1 where sole_proprietor=true and NPI-2.<br>
+    Blank ("") is not accepted in the API, but may be
+    encountered in legacy data.
+                        </td>
+</tr>
+
+<tr>
+  <td>prefix</td>
+  <td>5</td>
+  <td>N</td>
+  <td>Applies only to NPI-1. Must be in ['Ms.'Mr.','Miss','Mrs.','Dr.','Prof.']</td>
+</tr>
+
+<tr>
+  <td>suffix</td>
+  <td>4</td>
+  <td>N</td>
+  <td>Applies only to NPI-1. Must be in ['Jr.','Sr.','I','II',                              'III','IV','V','VI','VII','VIII','IX','X']</td>
+</tr>
+
+<tr>
+  <td>credential</td>
+  <td>50</td>
+  <td>N</td>
+  <td>Refersonly to NPI-1.</td>
+</tr>
+
+<tr>
+  <td>othertype</td>
+  <td>50</td>
+  <td>S</td>
+  <td>Required when code=5.</td>
+</tr>
+
+<tr>
+  <td>organization_name</td>
+  <td>150</td>
+  <td>S</td>
+  <td>Required for NPI-2.</td>
+</tr>
+
+<tr>
+  <td>first_name</td>
+  <td>150</td>
+  <td>S</td>
+  <td>Required for NPI-1 when code is 1 or 2.</td>
+</tr>
+
+<tr>
+  <td>last_name</td>
+  <td>150</td>
+  <td>S</td>
+  <td>Required for NPI-1 when code is 1 or 2.</td>
+</tr>
+
+<tr>
+  <td>middle_name</td>
+  <td>150</td>
+  <td>N</td>
+  <td>Applies only to NPI-1 and when code is 1 or 2.</td>
+</tr>
+
+
+</table>
+
+
+Addresses (addresses)
+---------------------
 
 <table>
  <tr>
@@ -1099,7 +1017,7 @@ Addresses
 </table>
 
 
-Taxonomies
+Taxonomies (taxonomies)
 ----------
 
 <table>
@@ -1134,7 +1052,7 @@ Taxonomies
 </table>
 
 
-Licenses
+Licenses (licenses)
 --------
 
 <table>
@@ -1189,8 +1107,8 @@ Licenses
 
 
 
-Identifiers
------------
+Identifiers (identifiers)
+-------------------------
 
 <table>
 
@@ -1238,7 +1156,7 @@ Identifiers
 
 
 
-Direct Addresses
+Direct Addresses (direct_addresses)
 ----------------
 
 <table>
@@ -1265,7 +1183,7 @@ Direct Addresses
 </tr>
 
 <tr>
-  <td>public</td>
+  <td>is_public</td>
   <td>None</td>
   <td>Y</td>
   <td>`true` if Direct address is public and `false` otherwise.</td>
