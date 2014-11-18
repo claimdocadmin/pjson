@@ -34,11 +34,6 @@ def validate_address_list(l, enumeration_type):
     #Test for max_length errors
 
     for d in l:
-        # form an address string.
-        address_string = "%s %s %s, %s %s (type=%s purpose=%s)" % (d['address_1'],
-                                            d['address_2'], d['city'], d['state'],
-                                            d['zip'], d['address_type'],
-                                           d['address_purpose'])
 
 
         for k in max_values.keys():
