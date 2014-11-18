@@ -17,7 +17,7 @@ from pjson.validate_identifiers import validate_identifier_list
 #from validate_direct_addresses import validate_direct_address_list
 #from validate_taxonomies import validate_taxonomy_list
 #from validate_identifiers import validate_identifier_list
-
+#from validate_other_names import validate_other_name_list
 
 
 def validate_pjson(j):
@@ -68,22 +68,21 @@ def validate_pjson(j):
         number = d['number']
 
     # Sanity check epoch dates
-    if d.has_key("last_updated_date_epoch"):
-        if type(d["last_updated_date_epoch"]) != type(1):
-            warning ="last_updated_date_epoch is not an integer."
+    if d.has_key("last_updated_epoch"):
+        if type(d["last_updated_epoch"]) != type(1):
+            warning ="last_updated_epoch is not an integer."
             warnings.append(warning)
     else:
-        warning ="last_updated_date_epoch is missing."
+        warning ="last_updated_epoch is missing."
         warnings.append(warning)
             
-    if d.has_key("created_date_epoch"):
-        if type(d["created_date_epoch"]) != type(1):
-            warning ="created_date_epoch is not an integer."
+    if d.has_key("created_epoch"):
+        if type(d["created_epoch"]) != type(1):
+            warning ="created_epoch is not an integer."
             warnings.append(warning)
     else:
         warning ="created_date_epoch is missing."
         warnings.append(warning)
-
 
 
     #Check for errors in the basic section
@@ -112,8 +111,13 @@ def validate_pjson(j):
         direct_errors = validate_direct_address_list(d['direct_addresses'], d['enumeration_type'])
     else:
         direct_errors = []
+         
+    if d.has_key('other_names'):
+        other_names_errors = validate_other_name_list(d['other_names'], d['enumeration_type'], d['basic'])
+    else:
+        other_names_errors = []    
 
-    errors = errors + basic_errors + address_errors + license_errors + \
+    errors = errors + basic_errors + other_names_errors + address_errors + license_errors + \
                         direct_errors + taxonomy_errors + identifier_errors
 
     response["errors"] = errors

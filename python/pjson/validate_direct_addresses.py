@@ -29,8 +29,8 @@ def validate_direct_address_list(l, enumeration_type):
             error = "email is required for direct_addresses[%s]." % i
             errors.append(error)
     
-        if type(d.get('public')) != bool :
-            error = "%s : public must be true or false." % (d.get('email'))
+        if type(d.get('is_public')) != bool :
+            error = "%s : is_public must be true or false." % (d.get('email'))
             errors.append(error)
     
         if not d.get('organization'):

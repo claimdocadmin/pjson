@@ -25,20 +25,6 @@ def validate_basic_dict(d, enumeration_type, number=None):
                 'credential'                  : 50,
                 'doing_business_as'           : 300,
                 'sole_proprieter'             : 3,
-                'other_first_name_1'          : 150,
-                'other_first_name_2'          : 150,
-                'other_last_name_1'           : 150,
-                'other_last_name_2'           : 150,
-                'other_middle_name_1'         : 150,
-                'other_middle_name_2'         : 150,
-                'other_name_code_1'           : 1,
-                'other_name_code_2'           : 1,
-                'other_name_credential_1'     : 50,
-                'other_name_credential_2'     : 50,
-                'other_name_prefix_1'         : 5,
-                'other_name_prefix_2'         : 5,
-                'other_name_suffix_1'         : 4,
-                'other_name_suffix_2'         : 4,
                 'organization_name'           : 300,
                 'organization_other_name'     : 300,
                 'organization_other_name_code': 1,
@@ -284,31 +270,13 @@ def validate_basic_dict(d, enumeration_type, number=None):
 
         #Validate the not required items NPI-1
 
-        if d.get("other_name_suffix_1") and d.get("other_name_suffix_1").capitalize()  not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
-                                    'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
-            error = """other_name_suffix_1 must be in Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
-            errors.append(error)
-
-        if d.get("other_name_suffix_2") and d.get("other_name_suffix_2").capitalize()  not in ('Jr.', 'Sr.', 'I', 'II', 'III', 'IV',
-                                    'V', 'VI', 'VII', 'VIII', 'IX', 'X'):
-            error = """other_name_suffix_2 must be in Choices must be in ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']'"""
-            errors.append(error)
 
         if d.get("name_prefix") and d.get("name_prefix").capitalize() not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
                 error = "name_prefix  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
                 errors.append(error)
 
 
-        if d.get("other_name_prefix_1")and d.get("other_name_prefix_1").capitalize()  not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
-                error = "other_name_prefix_1  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
-                errors.append(error)
-
-        if d.get("other_name_prefix_2") and d.get("other_name_prefix_2").capitalize()  not in ('Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'):
-            error = "other_name_prefix_2  must be one of the following: 'Ms.', 'Mr.', 'Miss', 'Mrs.', 'Dr.', 'Prof.'"
-            errors.append(error)
-
-
-
+    
 
     if enumeration_type == "NPI-2":
 
@@ -339,6 +307,10 @@ def validate_basic_dict(d, enumeration_type, number=None):
 
         if not d.get('authorized_official_last_name'):
             error = "authorized_official_last_name is required for a type-2 organization provider."
+            errors.append(error)
+            
+        if not d.get('authorized_official_title_or_position'):
+            error = "authorized_official_title_or_position is required for a type-2 organization provider."
             errors.append(error)
 
         if not d.get('authorized_official_telephone_number'):
