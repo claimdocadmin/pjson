@@ -14,7 +14,7 @@ def validate_taxonomy_list(l, enumeration_type):
  
         #check for required information
         if d.get('code') not in TAXONOMY_CODES:
-            error = "%s : code (taxonomy) is not a valide taxonomy code. See http://www.wpc-edi.com/taxonomy" % d.get('code')
+            error = "%s : code (taxonomy) is not a valid taxonomy code. See http://www.wpc-edi.com/taxonomy" % d.get('code')
             errors.append(error)
         print d["code"]
         if type(d.get('primary')) != type(True) :
