@@ -18,7 +18,7 @@ from pjson.validate_other_names import validate_other_name_list
 #from validate_direct_addresses import validate_direct_address_list
 #from validate_taxonomies import validate_taxonomy_list
 #from validate_identifiers import validate_identifier_list
-
+#from validate_other_names import validate_other_name_list
 
 
 def validate_pjson(j):
@@ -100,7 +100,7 @@ def validate_pjson(j):
         license_errors = validate_license_list(d['licenses'], d['enumeration_type'])
     else:
         license_errors = []
-
+   
     taxonomy_errors = validate_taxonomy_list(d['taxonomies'], d['enumeration_type'])
 
     if d.has_key('identifiers'):
