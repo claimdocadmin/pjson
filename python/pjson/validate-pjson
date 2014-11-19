@@ -4,7 +4,7 @@
 # Written by Alan Viars
 import json, sys
 
-from pjon.validate_pjson import validate_pjson
+from pjson.validate_pjson import validate_pjson
 
 
 if __name__ == "__main__":

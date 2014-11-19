@@ -67,9 +67,9 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
 
 
 setup(name="providerjson",
-      version="0.0.19",
+      version="0.0.20",
       description="Provider JSON - Command Line Utitlity and Python Library",
-      long_description="""Outputs a JSON array of errors found in a Provider JSON string or file.""",
+      long_description="""Outputs a JSON array of errors and warnings found in a Provider JSON string or file.""",
       author="Alan Viars",
       author_email="alan.viars@cms.hhs.gov",
       url="https://gitbub.com/hhsidealab/pjson",
