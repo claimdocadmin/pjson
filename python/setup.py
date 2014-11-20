@@ -67,7 +67,7 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
 
 
 setup(name="providerjson",
-      version="0.0.24",
+      version="0.0.28",
       description="Provider JSON - Command Line Utitlity and Python Library",
       long_description="""Outputs a JSON array of errors and warnings found in a Provider JSON string or file.""",
       author="Alan Viars",
@@ -75,7 +75,8 @@ setup(name="providerjson",
       url="https://gitbub.com/hhsidealab/pjson",
       download_url="https://gitbub.com/hhsidealab/pjson/tarball/master",
       packages=packages,
-      package_data={},
+      package_data={'pjson':['taxonomy-license-crosswalk.csv',]},
+      include_package_data=True,
       scripts=['pjson/validate-pjson',
                ]
       )

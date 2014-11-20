@@ -1,7 +1,7 @@
 ProviderJSON
 ============
 
-0.0.24
+0.0.28
 
 
 Quick Installation of Reference Implementation
@@ -740,7 +740,7 @@ Other Names (other_names)
   <td>suffix</td>
   <td>4</td>
   <td>N</td>
-  <td>Applies only to NPI-1. Must be in ['Jr.','Sr.','I','II',                              'III','IV','V','VI','VII','VIII','IX','X']</td>
+  <td>Applies only to NPI-1. Must be in ['Jr.','Sr.','I','II', 'III','IV','V','VI','VII','VIII','IX','X']</td>
 </tr>
 
 <tr>
@@ -754,7 +754,7 @@ Other Names (other_names)
   <td>othertype</td>
   <td>50</td>
   <td>S</td>
-  <td>Required when code=5.</td>
+  <td>Required when code=5 (Other).</td>
 </tr>
 
 <tr>
@@ -1019,6 +1019,10 @@ Addresses (addresses)
 
 Taxonomies (taxonomies)
 ----------
+
+Note that some taxonomy codes require a license.  Additionally some taxonomies are
+for individuals while others are for organizations.  This information can be found
+in the `taxonomy-license-crosswalk.csv` file within this repository.
 
 <table>
 
