@@ -1,14 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: ai ts=4 sts=4 et sw=4
-
 # Written by Alan Viars
-import json, sys, datetime, csv
+
+import json, sys, os, datetime, csv
 from choices import TAXONOMY_CODES
 
+
 def validate_taxonomy_list(taxonomies, enumeration_type, licenses,
-                           sole_proprietor,
-                           csvfile="taxonomy-license-crosswalk.csv"):
+                           sole_proprietor):
+    
+    csvfile = os.path.join( os.path.dirname( __file__),  "taxonomy-license-crosswalk.csv")
+    
     errors = []
     primary_count  = 0
 
