@@ -101,7 +101,8 @@ def validate_pjson(j):
     else:
         license_errors = []
    
-    taxonomy_errors = validate_taxonomy_list(d['taxonomies'], d['enumeration_type'])
+    taxonomy_errors = validate_taxonomy_list(d['taxonomies'], d['enumeration_type'],
+                        d.get('licenses', []), d['basic'].get('sole_proprietor', "NO"))
 
     if d.has_key('identifiers'):
         identifier_errors = validate_identifier_list(d['identifiers'], d['enumeration_type'])
