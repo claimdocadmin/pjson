@@ -16,8 +16,8 @@ This defaults to `true`. The first table outlines the data model now, and the fo
 
 
 
-Direct Addresses - As it is now (Loose)
----------------------------------
+Direct Addresses - Current Option 1 (Loose)
+-------------------------------------------
 
 <table>
 <tr>
