@@ -1,7 +1,7 @@
 ProviderJSON
 ============
 
-0.0.28
+0.0.29
 
 
 Quick Installation of Reference Implementation
@@ -19,8 +19,8 @@ Test it using the command line tool on Unixlike systems:
 
 
     validate-pjson sample.json
-    
-    
+
+
 On Windows it will be something like:
 
 
@@ -31,7 +31,7 @@ This will return a JSON object with arrays of errors and warnings. A clean recor
 look like this.
 
     {
-        "errors": [], 
+        "errors": [],
         "warnings": []
     }
 
@@ -60,13 +60,13 @@ Here is a high-level pseudo-code example:
 
     {
         "enumeration_type"           : "NPI-1",
-        "number"                     : 114283205,
+        "number"                     : 1142832052,
         "last_updated_epoch"         : 1409675065,
         "created_epoch"              : 1409663451,
         "basic"                      : {...},
         "other_names"                : [...],
         "addresses"                  : [...],
-        "taxonomies"                 : [... ],
+        "taxonomies"                 : [...],
         "licenses"                   : [...],
         "identifiers"                : [...],
         "specialties"                : [...],
@@ -102,9 +102,8 @@ The `enumeration_type` is required and shall be one of these four values.
 
 * NPI-1 - An individual (human) provider.
 * NPI-2 - An provider (legal entity) organization.
-* OEID  - An individual "other entitiy" provider (a human being).
-* HPID  - A health plan identifier.
-
+* OEID  - An individual "other entitiy" provider (a human being not eligbile for an NPI-1).
+* HPID  - A health plan identifier (an organization).
 
 
 Number
@@ -112,7 +111,7 @@ Number
 
 The `number` is the assigned enumeration number (e.g. an NPI). This integer
 field should be left blank when submitting a new enumeration request, but
-must be provided on change requests. Number is always length 9 where 
+must be provided on change requests. Number is always length 10 where 
 the  last number is a checkdigit according to the Luhn algorithm. 
 Please refer to the NPI final rule for more infromation.
 
@@ -140,31 +139,31 @@ not counting leap seconds (in ISO8601: 1970-01-01T00:00:00Z).
 Requirements for National Plan Identifer Type I Individual (NPI-1)
 ------------------------------------------------------------------
 
-* basic - name, contact person etc.
-* licenses - at least 1 license or certification
-* taxonomies - at least one and one should be marked as primary.
-* addresses - Exactly one mailing addrress.  Exactly one primary practice location.
+* basic      - First and last name, contact person etc.
+* licenses   - At least 1 license or certification for certain taxonomies.
+* taxonomies - At least 1 is required. 1 is reqired to marked as primary.
+* addresses  - Exactly one mailing addrress.  Exactly one primary practice location.
 
 Requirements for National Plan Identifer Type II Entity (NPI-2)
 ---------------------------------------------------------------
 
 
-* basic - name, contact person etc.
-* taxonomies - at least one and one should be marked as primary.
-* addresses - Exactly one mailing addrress.  Exactly one primary practice location.
+* basic      - Organization name, FEIN, authorized official, etc.
+* taxonomies - At least 1 is required and 1 is reqired to marked as primary.
+* addresses  - Exactly one mailing addrress.  Exactly one primary practice location.
 
 Requirements for Other Entitiy Identifier (OEID)
 ------------------------------------------------
 
-* basic - name, contact person etc.
-* taxonomies - at least one and one should be marked as primary.
+An individual with an OEID, should NOT be eligible nor have an NPI-1.
+
+* basic       - First and last, contact person, etc.
+* taxonomies  - At least 1 is required. 1 is reqired to marked as primary.
 
 Requirements for a Health Plan Identifier (HPID)
 ------------------------------------------------
 
-* basic - name, contact person etc.
-* taxonomies - at least one and one should be marked as primary.
-
+* basic - HPID type, FEIN, Controlling CPH-HPID if type is a Sub-Health Plan SHP, organization name, authorized individual, etc.
 
 Basic (basic object)
 --------------------
@@ -690,6 +689,17 @@ These are as follows:
    <td>N</td>
    <td></td>
  </tr>
+
+  <td>hpid_type</td>
+  <td>17</td>
+  <td>S</td>
+  <td>
+   Required where enumeration_type is HPID. Type must be in [CHP, SHP-COMPANY, SHP-ISSUER,      SHP-PRODUCT, SHP-LINE-BUSINESS, SHP-OTHER]
+
+  </td>
+
+
+
 </table>
 
 
@@ -801,14 +811,14 @@ Addresses (addresses)
 </tr>
 
 
-<tr>
+		<tr>
           <td>address_purpose</td>
           <td>20</td>
           <td>Y</td>
           <td>Choices must be in ['LOCATION', 'MAILING', 'MEDREC-STORAGE', '1099',
           'REVALIDATION', 'ADDITIONAL-LOCATION', 'REMITTANCE']</td>
-</tr>
-            
+		</tr>
+
 
         <tr>
           <td>address_type</td>
@@ -816,7 +826,7 @@ Addresses (addresses)
           <td>Y</td>
           <td>Choices must be in ['DOM', 'FGN', 'MIL']</td>
         </tr>
-            
+
 
         <tr>
           <td>address_1</td>
@@ -824,7 +834,7 @@ Addresses (addresses)
           <td>Y</td>
           <td></td>
         </tr>
-            
+
 
         <tr>
           <td>address_2</td>
@@ -834,15 +844,12 @@ Addresses (addresses)
         </tr>
 
 
-
-
         <tr>
           <td>city</td>
           <td>200</td>
           <td>N</td>
           <td></td>
         </tr>
-
 
         <tr>
           <td>zip</td>
@@ -880,19 +887,12 @@ Addresses (addresses)
         </tr>
 
 
-
-
-
-
         <tr>
           <td>driving_details</td>
           <td>15</td>
           <td>N</td>
           <td></td>
         </tr>
-            
-
-            
 
         <tr>
           <td>foreign_fax_number</td>
@@ -901,14 +901,12 @@ Addresses (addresses)
           <td></td>
         </tr>
 
-
         <tr>
           <td>foreign_postal</td>
           <td>12</td>
           <td>N</td>
           <td></td>
         </tr>
-
 
         <tr>
           <td>foreign_state</td>
@@ -1094,17 +1092,21 @@ Licenses (licenses)
 
 
 <tr>
-  <td>status</td>
-  <td>2<2/td>
+  <td>url</td>
+  <td>512</td>
   <td>N</td>
-  <td>Defaults to UNKNOWN. This is determinied by verification by the enumerator
-  and produced server side. If suplied, value must be in { "UNKNOWN", "ACTIVE",
-  "ACTIVE_WITH_RESTRICTIONS", "EXPIRED", "REVOKED", "DECEASED"]
-
-  
-  Values are ""Status</td>
+  <td>Public link to provider license data.</td>
 </tr>
 
+
+<tr>
+  <td>status</td>
+  <td>2</td>
+  <td>Y<td>
+  <td>Defaults to UNKNOWN. This is determinied by verification by the enumerator
+  and produced server side. If suplied, value must be in { "UNKNOWN", "ACTIVE",
+  "ACTIVE_WITH_RESTRICTIONS", "EXPIRED", "REVOKED", "DECEASED"].</td>
+</tr>
 
 
 </table>
@@ -1161,7 +1163,7 @@ Identifiers (identifiers)
 
 
 Direct Addresses (direct_addresses)
-----------------
+-----------------------------------
 
 <table>
 <tr>
@@ -1170,7 +1172,6 @@ Direct Addresses (direct_addresses)
   <td>Required</td>
   <td>Notes</td>
 </tr>
-
 
 <tr>
   <td>email</td>
@@ -1188,17 +1189,10 @@ Direct Addresses (direct_addresses)
 
 <tr>
   <td>is_public</td>
-  <td>None</td>
+  <td>Boolean</td>
   <td>Y</td>
   <td>`true` if Direct address is public and `false` otherwise.</td>
 </tr>
 
-
-
 </table>
 
-Code Contributions
-==================
-
-
-We are looking for code contributions in the form of pull requests.
