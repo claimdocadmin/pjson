@@ -121,7 +121,7 @@ Valid Example 2:
 
     {
     "email"               : "jtkirk@direct.example.com",
-    "organization_npi_1"  : 1234567890,
+    "organization_npi_2"  : 1234567890,
     "is_pubic"            : false,
     }
 
@@ -130,7 +130,7 @@ Invalid Example 1:
 
     {
     "email"               : "jtkirk@direct.example.com",
-    "organization_npi_1"  : 1234567890,
+    "organization_npi_2"  : 1234567890,
     "organization_name"   : "Klingon Health",
     "is_pubic"            : true,
     }
@@ -188,7 +188,7 @@ Valid Example 1:
 
     {
     "email"               : "jtkirk@direct.example.com",
-    "organization_npi_1"  : 1234567890,
+    "organization_npi_2"  : 1234567890,
     "is_pubic"            : false,
     }
 
