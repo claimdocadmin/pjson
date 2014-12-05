@@ -298,7 +298,7 @@ direct_domain
   <td>domain</td>
   <td>150</td>
   <td>Y</td>
-  <td>A direct domain controled by this NPI. Organizations may have 0..N domains defined. No two NPI-2 records may share the same domain,</td>
+  <td>A direct domain controled by this NPI. Organizations may have 0..N domains defined. No two NPI-2 records may share the same domain.</td>
 </tr>
 
 </table>
@@ -326,16 +326,15 @@ direct_address
 </table>
 
 
-Valid Example for a domnain:
-     #Domain in NPI-1 or sole proprietor only
+Valid example for a domnain:
+
     {
     "domain"               : "direct.example.com",
     "organization_npi      : 1234567891,
     }
-    
-Valid  example for direct address
 
-    #Email in NPI-1 or NPI-2
+Valid example for direct address
+
     {
     "email"               : "jtkirk@direct.example.com",
     "organization_npi      : 1234567890,
