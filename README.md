@@ -429,17 +429,10 @@ These are as follows:
    <td>deceased_notes</td>
    <td>1000</td>
    <td>N</td>
-   <td>Optional deceased notes. This information is for the Enuemrator only</td>
+   <td>Optional deceased notes. This information is for the Enuemrator only.</td>
  </tr>
 
 
-
- <tr>
-   <td>parent_organization_ein</td>
-   <td>Boolean</td>
-   <td>N</td>
-   <td>'true or 'false'.Applies only to NPI-2. A parent organization tax id.</td>
- </tr>
 
  <tr>
    <td>parent_organization_ein</td>
@@ -733,7 +726,7 @@ Other Names (other_names)
     ("5","Other Name").<br>
     Codes "1" and "2"refer only to NPI-1. <br>
     4 refers only to NPI-2.<br>
-    5 refers to NPI-1 where sole_proprietor=true and NPI-2.<br>
+    3 refers to NPI-1 where sole_proprietor=true and NPI-2.<br>
     Blank ("") is not accepted in the API, but may be
     encountered in legacy data.
                         </td>
@@ -1151,7 +1144,7 @@ Identifiers (identifiers)
 </tr>
 
 <tr>
-  <td>Issuer</td>
+  <td>issuer</td>
   <td>150</td>
   <td>Y</td>
   <td>The name of the issuing body.</td>
