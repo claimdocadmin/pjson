@@ -3,7 +3,7 @@ Storing Direct Addresses in NPPES:
 
 _Last Updated: December 5, 2014_
 
-This document outlines how direct addresses are stored in the NPPES prototype, currently and outlines other approaches. These have been updated and expanded to five options based on Google Group comments.
+This document outlines how direct addresses are currently stored in the NPPES prototype and also outlines other approaches for discussion. These have been updated and expanded to five options based on Google Group comments.
 
 
 Background
