@@ -1063,9 +1063,9 @@ Licenses (licenses)
 
 
 Taxonomy Licenses (taxonomy_licenses)
-====================================
+=====================================
 
-The arrary is designed to associate taxonomy codes with specific licenses.
+The `taxonomy_licenses` arrary is designed to associate taxonomy codes with specific licenses within the provider document.
 
 <table>
 
