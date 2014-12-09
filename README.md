@@ -1124,7 +1124,7 @@ The `url` arrary is designed to store various URL pointers to provider data such
 
 
 <tr>
-  <td>type</td>
+  <td>code</td>
   <td>20</td>
   <td>Y</td>
   <td>URL Type code.  Accetable codes are ("WWW", "Website"),("MED-LICENSE", "Medical Licsense"),("WEB-SERVICE","Web Service"). SOAP and REST API's should select "WEB-SERVICE".</td>
@@ -1147,7 +1147,27 @@ The `url` arrary is designed to store various URL pointers to provider data such
 
 </table>
 
+Examples
+    {
+    "url": "http://example.com",
+    "code": "WWW",
+    "title": "Easton Avery Clinic"
+    }
 
+
+    {
+    "url": "https://example.com/webservice.wsgi",
+    "code": "WEB-SERVICE",
+    "title": "Some SOAP web service"
+    "description": "This is a WSGI to a SOAP service for x, y, and z."
+    }
+
+    {
+    "url": "https://example.com/get-some-data",
+    "code": "WEB-SERVICE",
+    "title": "Some REST web service"
+    "description": "This is an  HTTP GET for a, b, and c."
+    }
 
 
 
