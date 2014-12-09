@@ -1,61 +1,16 @@
-ProviderJSON
+ProviderJSON 
 ============
 
-0.0.29
-
-
-Quick Installation of Reference Implementation
-==============================================
-
-A validation library(Python) and command line tool for validating ProviderJSON
-is contained in this repository.  The easiest way to install it is using `pip`.
-Open a terminal window and type:
-
-
-    sudo pip install providerjson
-
-
-Test it using the command line tool on Unixlike systems:
-
-
-    validate-pjson sample.json
-
-
-On Windows it will be something like:
-
-
-    python c:\Python27\Scrips\validate-pjson sample.json
-
-
-This will return a JSON object with arrays of errors and warnings. A clean record would
-look like this.
-
-    {
-        "errors": [],
-        "warnings": []
-    }
-
-
-
-You can also use it in you own code like so:
-
-
-    python
-    >>> from pjson.validate_pjson import validate_pjson
-    >>> validate_pjson('{"number": "12345"}')
-    >>> {'errors': ['The JSON object does not contain an enumeration_type.'], 'warnings': []}
-    >>>
-
-
+Version: _0.3.0 (ALPHA)_
 
 ProviderJSON Format Definition
 ==============================
 
-ProviderJSON is a JSON object format for US health care providers. 
+ProviderJSON is a JSON object format for representing US health care providers.
+
 It is based on fields currently collected to receive or maintain 
-a National Provider Identifier (or NPI). ProviderJSON is the basis for 
-the NPPES National Plan and Provider Enumeration System (NPPES) write API.
-Here is a high-level pseudo-code example:
+a National Provider Identifier (or NPI). ProviderJSON is input and output format 
+for Provider Enrollment APIs. Core information is stored either at the top level or in the `basic` object. `basic` contains name, demographics, and related information. subsequent arrays of objects contain other information such as addresses and license information. Much of the information is optional.  Here is a high-level pseudo-code example of a typical document:
 
 
     {
@@ -68,14 +23,53 @@ Here is a high-level pseudo-code example:
         "addresses"                  : [...],
         "taxonomies"                 : [...],
         "licenses"                   : [...],
+        "taxonomy_licenses"          : [...],
         "identifiers"                : [...],
         "specialties"                : [...],
         "direct_addresses"           : [...],
+        "urls"                       : [...],
         .
         .
         .
     }
 
+
+Requirement Summary  for National Plan Identifer Type I Individual (NPI-1)
+------------------------------------------------------------------
+
+* basic      - First and last name, contact person etc.
+* licenses   - At least 1 license or certification for certain taxonomies.
+* taxonomies - At least 1 is required. 1 is reqired to marked as primary.
+* addresses  - Exactly one mailing addrress.  Exactly one primary practice location.
+* taxonomy_licenses - When a taxonomy requires a license, this maps the taxonomy, in `taxonomies` array, to a specific license in the `license` array.
+
+Requirement Summary for National Plan Identifer Type II Entity (NPI-2)
+---------------------------------------------------------------
+
+
+* basic      - Organization name, FEIN, authorized official, etc.
+* taxonomies - At least 1 is required and 1 is reqired to marked as primary.
+* addresses  - Exactly one mailing addrress.  Exactly one primary practice location.
+
+Requirement Summary  for Other Entitiy Identifier (OEID)
+------------------------------------------------
+
+An individual with an OEID, should NOT be eligible nor have an NPI-1.
+
+* basic       - First and last, contact person, etc.
+* taxonomies  - At least 1 is required and 1 is reqired to marked as primary.
+
+Requirement Summary for a Health Plan Identifier (HPID)
+------------------------------------------------
+
+* basic - HPID type, FEIN, Controlling CPH-HPID if type is a Sub-Health Plan SHP, organization name, authorized individual, etc.
+
+
+
+
+
+Top-Level Object
+================
 The ProviderJSON object contains several top-level items.
 The `enumeration_type` acts a switch determining what is required and what is
 not. The `number` component contains a string of the enumeration number.
@@ -136,37 +130,10 @@ not counting leap seconds (in ISO8601: 1970-01-01T00:00:00Z).
 
 
 
-Requirements for National Plan Identifer Type I Individual (NPI-1)
-------------------------------------------------------------------
 
-* basic      - First and last name, contact person etc.
-* licenses   - At least 1 license or certification for certain taxonomies.
-* taxonomies - At least 1 is required. 1 is reqired to marked as primary.
-* addresses  - Exactly one mailing addrress.  Exactly one primary practice location.
-
-Requirements for National Plan Identifer Type II Entity (NPI-2)
----------------------------------------------------------------
-
-
-* basic      - Organization name, FEIN, authorized official, etc.
-* taxonomies - At least 1 is required and 1 is reqired to marked as primary.
-* addresses  - Exactly one mailing addrress.  Exactly one primary practice location.
-
-Requirements for Other Entitiy Identifier (OEID)
-------------------------------------------------
-
-An individual with an OEID, should NOT be eligible nor have an NPI-1.
-
-* basic       - First and last, contact person, etc.
-* taxonomies  - At least 1 is required. 1 is reqired to marked as primary.
-
-Requirements for a Health Plan Identifier (HPID)
-------------------------------------------------
-
-* basic - HPID type, FEIN, Controlling CPH-HPID if type is a Sub-Health Plan SHP, organization name, authorized individual, etc.
 
 Basic (basic object)
---------------------
+====================
 
 `basic` contains an object (`{}`) of basic demographic inforation that is not
 repeated.  The information is based on the NPI final rule, but includes some
@@ -697,7 +664,7 @@ These are as follows:
 
 
 Other Names (other_names)
--------------------------
+=========================
 <table>
  <tr>
   <td>Name</td>
@@ -793,7 +760,7 @@ Other Names (other_names)
 
 
 Addresses (addresses)
----------------------
+=====================
 
 <table>
  <tr>
@@ -1009,7 +976,7 @@ Addresses (addresses)
 
 
 Taxonomies (taxonomies)
-----------
+=======================
 
 Note that some taxonomy codes require a license.  Additionally some taxonomies are
 for individuals while others are for organizations.  This information can be found
@@ -1036,7 +1003,7 @@ in the `taxonomy-license-crosswalk.csv` file within this repository.
 
 <tr>
   <td>primary</td>
-  <td>None</td>
+  <td>Boolean</td>
   <td>Y</td>
   <td>`true` if this is the primary taxonomy and `false` otherwise.
   Only one taxonomy code in the array can be flagged with primary=true.
@@ -1048,7 +1015,7 @@ in the `taxonomy-license-crosswalk.csv` file within this repository.
 
 
 Licenses (licenses)
---------
+===================
 
 <table>
 
@@ -1085,20 +1052,94 @@ Licenses (licenses)
 
 
 <tr>
-  <td>url</td>
-  <td>512</td>
-  <td>N</td>
-  <td>Public link to provider license data.</td>
+  <td>status</td>
+  <td>2</td>
+  <td>Y</td>
+  <td>Defaults to UNKNOWN for bringing lagacy data forward. If suplied, the value must be in ["UNKNOWN","ACTIVE","ACTIVE_WITH_RESTRICTIONS", "EXPIRED", "REVOKED", "DECEASED"].     </td>
+</tr>
+
+
+</table>
+
+
+Taxonomy Licenses (taxonomy_licenses)
+====================================
+
+The arrary is designed to associate taxonomy codes with specific licenses.
+
+<table>
+
+<tr>
+  <td>Name</td>
+  <td>Max Length</td>
+  <td>Required</td>
+  <td>Notes</td>
+</tr>
+
+<tr>
+  <td>taxonomy_code</td>
+  <td>20</td>
+  <td>Y</td>
+  <td>A taxonomy code that must be present in the `taxonomies` array of the same document.</td>
 </tr>
 
 
 <tr>
-  <td>status</td>
-  <td>2</td>
-  <td>Y<td>
-  <td>Defaults to UNKNOWN. This is determinied by verification by the enumerator
-  and produced server side. If suplied, value must be in { "UNKNOWN", "ACTIVE",
-  "ACTIVE_WITH_RESTRICTIONS", "EXPIRED", "REVOKED", "DECEASED"].</td>
+  <td>license_code</td>
+  <td>75</td>
+  <td>Y</td>
+  <td>A license code that must be present in the `licenses` array of the same document.
+  The license code must be in the format [STATE]-[PROVIDER_TYPE]-[LICENSE_NUMBER].</td>
+</tr>
+
+
+
+</table>
+
+
+
+
+URLs (urls)
+===========
+
+The `url` arrary is designed to store various URL pointers to provider data such as wesites and webservices
+
+<table>
+
+<tr>
+  <td>Name</td>
+  <td>Max Length</td>
+  <td>Required</td>
+  <td>Notes</td>
+</tr>
+
+<tr>
+  <td>url</td>
+  <td>1024</td>
+  <td>Y</td>
+  <td>The url.</td>
+</tr>
+
+
+<tr>
+  <td>type</td>
+  <td>20</td>
+  <td>Y</td>
+  <td>URL Type code.  Accetable values are  ("WWW", "Website"),("MED-LICENSE", "Medical Licsense"),("WEB-SERVICE","Web Service"),</td>
+</tr>
+
+<tr>
+  <td>title</td>
+  <td>256</td>
+  <td>N</td>
+  <td>A tilte for the URL.</td>
+</tr>
+
+<tr>
+  <td>description</td>
+  <td>1024</td>
+  <td>N</td>
+  <td>Description of the URL's purpose.</td>
 </tr>
 
 
@@ -1106,8 +1147,15 @@ Licenses (licenses)
 
 
 
+
+
+
+
+
+
+
 Identifiers (identifiers)
--------------------------
+=========================
 
 <table>
 
@@ -1130,7 +1178,7 @@ Identifiers (identifiers)
   <td>code</td>
   <td>2</td>
   <td>Y</td>
-  <td>Identifer Type code.  Accetable values are in ("", "Blank"),("01", "Other"),("02","Medicare UPIN"),
+  <td>Identifer Type code.  Accetable values are ("", "Blank"),("01", "Other"),("02","Medicare UPIN"),
     ("04","Medicare ID Type Unspecified"),("05", "Medicaid"),
     ("06", "Medicare OSCAR/certification"), ("07", "Medicare NSC"),
     ("08", "MEDICARE PIN")</td>
@@ -1156,7 +1204,7 @@ Identifiers (identifiers)
 
 
 Direct Addresses (direct_addresses)
------------------------------------
+===================================
 
 <table>
 <tr>
@@ -1189,3 +1237,44 @@ Direct Addresses (direct_addresses)
 
 </table>
 
+Quick Installation of Reference Implementation
+==============================================
+
+A validation library(Python) and command line tool for validating ProviderJSON
+is contained in this repository.  The easiest way to install it is using `pip`.
+Open a terminal window and type:
+
+
+    sudo pip install providerjson
+
+
+Test it using the command line tool on Unixlike systems:
+
+
+    validate-pjson sample.json
+
+
+On Windows it will be something like:
+
+
+    python c:\Python27\Scrips\validate-pjson sample.json
+
+
+This will return a JSON object with arrays of errors and warnings. A clean record would
+look like this.
+
+    {
+        "errors": [],
+        "warnings": []
+    }
+
+
+
+You can also use it in you own code like so:
+
+
+    python
+    >>> from pjson.validate_pjson import validate_pjson
+    >>> validate_pjson('{"number": "12345"}')
+    >>> {'errors': ['The JSON object does not contain an enumeration_type.'], 'warnings': []}
+    >>>
