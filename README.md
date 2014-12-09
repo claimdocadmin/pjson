@@ -10,7 +10,9 @@ ProviderJSON is a JSON object format for representing US health care providers.
 
 It is based on fields currently collected to receive or maintain 
 a National Provider Identifier (or NPI). ProviderJSON is input and output format 
-for Provider Enrollment APIs. Core information is stored either at the top level or in the `basic` object. `basic` contains name, demographics, and related information. subsequent arrays of objects contain other information such as addresses and license information. Much of the information is optional.  Here is a high-level pseudo-code example of a typical document:
+for Provider Enrollment APIs. ProviderJSON will also store HPID and OEID enumerations as well.
+
+Core information is stored either at the top level or in the `basic` object. `basic` contains name, demographics, and related information. subsequent arrays of objects contain other information such as addresses and license information. Much of the information is optional.  Here is a high-level pseudo-code example of a typical document:
 
 
     {
@@ -41,7 +43,7 @@ Requirement Summary  for National Plan Identifer Type I Individual (NPI-1)
 * licenses   - At least 1 license or certification for certain taxonomies.
 * taxonomies - At least 1 is required. 1 is reqired to marked as primary.
 * addresses  - Exactly one mailing addrress.  Exactly one primary practice location.
-* taxonomy_licenses - When a taxonomy requires a license, this maps the taxonomy, in `taxonomies` array, to a specific license in the `license` array.
+* taxonomy_licenses - When a taxonomy requires a license, this array maps the taxonomy, in the `taxonomies` array, to a specific license in the `license` array.
 
 Requirement Summary for National Plan Identifer Type II Entity (NPI-2)
 ---------------------------------------------------------------
@@ -654,7 +656,7 @@ These are as follows:
   <td>17</td>
   <td>S</td>
   <td>
-   Required where enumeration_type is HPID. Type must be in [CHP, SHP-COMPANY, SHP-ISSUER,      SHP-PRODUCT, SHP-LINE-BUSINESS, SHP-OTHER]
+   Required where enumeration_type is HPID. Type must be in [CHP, SHP-COMPANY, SHP-ISSUER, SHP-PRODUCT, SHP-LINE-BUSINESS, SHP-OTHER]
 
   </td>
 
@@ -1102,7 +1104,7 @@ The `taxonomy_licenses` arrary is designed to associate taxonomy codes with spec
 URLs (urls)
 ===========
 
-The `url` arrary is designed to store various URL pointers to provider data such as wesites and webservices
+The `url` arrary is designed to store various URL pointers to provider data such as websites and webservices.
 
 <table>
 
@@ -1117,7 +1119,7 @@ The `url` arrary is designed to store various URL pointers to provider data such
   <td>url</td>
   <td>1024</td>
   <td>Y</td>
-  <td>The url.</td>
+  <td>A url,</td>
 </tr>
 
 
@@ -1125,7 +1127,7 @@ The `url` arrary is designed to store various URL pointers to provider data such
   <td>type</td>
   <td>20</td>
   <td>Y</td>
-  <td>URL Type code.  Accetable values are  ("WWW", "Website"),("MED-LICENSE", "Medical Licsense"),("WEB-SERVICE","Web Service"),</td>
+  <td>URL Type code.  Accetable codes are ("WWW", "Website"),("MED-LICENSE", "Medical Licsense"),("WEB-SERVICE","Web Service"). SOAP and REST API's should select "WEB-SERVICE".</td>
 </tr>
 
 <tr>
