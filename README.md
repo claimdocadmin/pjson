@@ -1147,7 +1147,9 @@ The `url` arrary is designed to store various URL pointers to provider data such
 
 </table>
 
-Examples
+Examples:
+
+
     {
     "url": "http://example.com",
     "code": "WWW",
