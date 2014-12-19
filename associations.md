@@ -9,7 +9,7 @@ The document is a draft proposed format for implementing "associations" between 
     "number": "12345678901",
      .
      .
-     "associations" : [ {assoication1}, {association2},...]
+     "associations" : [ {association1}, {association2},...]
 
 	}
 
