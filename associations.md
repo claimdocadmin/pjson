@@ -31,7 +31,7 @@ Simple Organization Example (within an NPI-2 document):
      			    {
      				"purpose_type":            "PROVIDER-NETWORK",
      				"association_data_type";   "NPI-1",
-     				"associations"; 			   "1111111111",
+     				"associations"; 		   "1111111111",
      				"endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      				"endpoint":                "sally@xyzdirect.example.com",
 					}
@@ -138,7 +138,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>1024</td>
   <td>S</td>
   <td>
- The association's identifer. Required if `enpoint_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose_type` is in`PERSON-CAN-MANAGE-THIS-RECORD`,  
+ The association's identifier. Required if `enpoint_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose_type` is in`PERSON-CAN-MANAGE-THIS-RECORD`,  
  `ORG-CAN-MANAGE-THIS-RECORD`, `HIE-EXCHANGE`,`MEDICAID-NETWORK`, `PAYER-NETWORK`, `ACO-NETWORK`, `DOMAIN`, `MEDICARE-NETWORK`, `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`, `PARENT-ORGANIZATION`,
   </td>
 </tr>
@@ -171,7 +171,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>description</td>
   <td>1024</td>
   <td>N</td>
-  <td>Description or written purpose of the assoication.</td>
+  <td>Description or written purpose of the association.</td>
 </tr>
 
 
@@ -281,7 +281,7 @@ Provider-Payer Example #2: The provider is part of this health plan's network. T
         ]
 	}
 
-Provider-Medicare Assocation
+Provider-Medicare Association
 
     {
     "enumeration_type": "NPI-2",
@@ -301,7 +301,7 @@ Provider-Medicare Assocation
             ]
 	}
 
-Provider-Medicaid Assocation
+Provider-Medicaid Association
 
     {
     "enumeration_type": "NPI-2",
@@ -322,7 +322,7 @@ Provider-Medicaid Assocation
             ]
 	}
 
-Other Entity-ACO Assoication ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
+Other Entity-ACO Association ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
 
     {
     "enumeration_type": "NPI-2",
@@ -347,7 +347,7 @@ Other Entity-ACO Assoication ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
 Combination Examples
 --------------------
 
-Individual provider to Organization  (NPI-1 --> NPI-2) Assocation with a Direct address.
+Individual provider to Organization  (NPI-1 --> NPI-2) Association with a Direct address.
 
 
 
