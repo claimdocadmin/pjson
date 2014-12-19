@@ -1,14 +1,12 @@
-Representing Associations
-=========================
+Representing Associations Between Actors in the US Healthcare Ecosystem
+=======================================================================
 
 
-The document is a draft proposed format for implementating "associations" between the various actors in the US healthcare ecosystem. This includes entity to entity relationships as well as endpoints (including Direct addresses and URLs). It is based on the Provider JSON enumberation object format. `assoications` is an arrary (i.e. a list of 0..N) `[]` of objects `{}` (i.e. a dictionary or hash) attached to the top level of our enumeration object `{}`.  For example:
+The document is a draft proposed format for implementating "associations" between the various actors in the US healthcare ecosystem. This includes entity to entity relationships as well as endpoints (including Direct addresses and URLs). It is based on the Provider JSON enumberation object format(<https://github.com/HHSIDEAlab/pjson>). `assoications` is an arrary (i.e. a list of 0..N) `[]` of objects `{}` (i.e. a dictionary or hash) attached to the top level of our enumeration object `{}`.  For example:
 
 	{
     "enumeration_type": "NPI-2",
     "number": "12345678901",
-     .
-     .
      .
      .
      "associations" : [ {assoication1}, {association2},...]
@@ -126,6 +124,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
    `IA-USERNAME`,
    `SOAP-WSGI-URL`,
    `CONNECT-URL`,
+   `FHIR-URL`,
    `HD-URL`,
    `RESTFUL-WS-URL`,
    `WEBSITE-URL`,
@@ -149,7 +148,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>endpoint</td>
   <td>1024</td>
   <td>S</td>
-  <td>Required for "HIE-EXCHANGE", or "DOMAIN". </td>
+  <td>Required when purpose is HIE-EXCHANGE", or "DOMAIN". </td>
 </tr>
 
 
