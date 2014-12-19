@@ -2,7 +2,7 @@ Representing Associations Between Actors in the US Healthcare Ecosystem
 =======================================================================
 
 
-The document is a draft proposed format for implementating "associations" between the various actors in the US healthcare ecosystem. This includes entity to entity relationships as well as endpoints (including Direct addresses and URLs). It is based on the Provider JSON enumberation object format(<https://github.com/HHSIDEAlab/pjson>). `assoications` is an arrary (i.e. a list of 0..N) `[]` of objects `{}` (i.e. a dictionary or hash) attached to the top level of our enumeration object `{}`.  For example:
+The document is a draft proposed format for implementing "associations" between the various actors in the US health care ecosystem. This includes entity to entity relationships as well as endpoints (including Direct addresses and URLs). It is based on the Provider JSON enumberation object format(<https://github.com/HHSIDEAlab/pjson>). `associations` is an arrary (i.e. a list of 0..N) `[]` of objects `{}` (i.e. a dictionary or hash) attached to the top level of our enumeration object `{}`.  For example:
 
 	{
     "enumeration_type": "NPI-2",
@@ -18,7 +18,7 @@ The document is a draft proposed format for implementating "associations" betwee
 Introduction
 ============
 
-Assoications store relationships between entities as well as health information exchange endpoints.  Often these can be combined into one assication. For example, we can say that "Dr. Sally with NPI-1 of 1111111111 is part of XYZ, Hospital(with an NPI-2 of 1234567890) and has a Direct address of sally@xyzdirect.example.com and is not accepting new patients here".
+Associations store relationships between entities as well as health information exchange endpoints.  Often these can be combined into one assication. For example, we can say that "Dr. Sally with NPI-1 of 1111111111 is part of XYZ, Hospital(with an NPI-2 of 1234567890) and has a Direct address of sally@xyzdirect.example.com and is not accepting new patients here".
 
 Simple Organization Example (within an NPI-2 document):
 
@@ -30,15 +30,15 @@ Simple Organization Example (within an NPI-2 document):
      "associations" : [ 
      			    {
      				"purpose_type":            "PROVIDER-NETWORK",
-     				"assoication_data_type";   "NPI-1",
-     				"assoication"; 			   "1111111111",
+     				"association_data_type";   "NPI-1",
+     				"associations"; 			   "1111111111",
      				"endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      				"endpoint":                "sally@xyzdirect.example.com",
 					}
      	]
 	}
 
-Simple Indivdual Example (within an NPI-1 document):
+Simple Individual Example (within an NPI-1 document):
 
     {
     "enumeration_type": "NPI-1",
@@ -48,8 +48,8 @@ Simple Indivdual Example (within an NPI-1 document):
      "associations" : [ 
      			    {
      				"purpose_type":            "PROVIDER-NETWORK",
-     				"assoication_data_type";   "NPI-2",
-     				"assoication"; 			   "1234567890",
+     				"association_data_type";   "NPI-2",
+     				"association"; 			   "1234567890",
      				"endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      				"endpoint":                "sally@xyzdirect.example.com",
 					}
@@ -61,7 +61,7 @@ Detailed Specification
 ======================
 
 
-Associations contain several codified types (i.e. metadata) that classify the data and laregly control what is required versus what is optional. These codified types are `purpose`,  `assocation_data_type`, and `endpoint_data_type`.  `purpose` is always required, while `assocation_data_type`, and `endpoint_data_type` are sometimes required based on the specific `purpose`.  The legacy `identifiers` data in NPPES will be absorbed into this format using the `MEDICAID-NETWORK` and/or the `OTHER-IDENTIFIER-LEGACY` purpose codes.
+Associations contain several codified types (i.e. metadata) that classify the data and laregly control what is required versus what is optional. These codified types are `purpose`,  `association_data_type`, and `endpoint_data_type`.  `purpose` is always required, while `association_data_type`, and `endpoint_data_type` are sometimes required based on the specific `purpose`.  The legacy `identifiers` data in NPPES will be absorbed into this format using the `MEDICAID-NETWORK` and/or the `OTHER-IDENTIFIER-LEGACY` purpose codes.
 
 
 <table>
@@ -93,7 +93,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
 
 
 <tr>
-  <td>assoication_data_type</td>
+  <td>association_data_type</td>
   <td>20</td>
   <td>S</td>
   <td>
@@ -134,7 +134,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
 
 
 <tr>
-  <td>assoication</td>
+  <td>association</td>
   <td>1024</td>
   <td>S</td>
   <td>
@@ -189,8 +189,8 @@ A provider associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "assoication_data_type";   "NPI-2",
-     "assoication"; 			"12334567890",
+     "association_data_type";   "NPI-2",
+     "association"; 			"12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 
@@ -202,8 +202,8 @@ A provider associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "assoication_data_type";   "NPI-2",
-     "assoication"; 			"12334567890",
+     "association_data_type";   "NPI-2",
+     "association; 			"12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 	}
@@ -214,8 +214,8 @@ A MAC associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "assoication_data_type";   "MAC",
-     "assoication"; 			"3"
+     "association_data_type";   "MAC",
+     "association"; 			"3"
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 	}
@@ -227,8 +227,8 @@ Adding a Direct Domain to an NPI-2.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "assoication_data_type";   "NPI-2",
-     "assoication"; 			"12334567890",
+     "association_data_type";   "NPI-2",
+     "association"; 			"12334567890",
      "endpoint_data_type":      "DOMAIN",
      "endpoint":                "direct.example.com",
 	}
@@ -249,8 +249,8 @@ Provider-Payer Example 1: The provider is part of this health plan's network. Th
 
         {
         "purpose":"PAYER-NETWORK",
-        "assoication_data_type":"NPI-2",
-        "assocation":"1234567890",
+        "association_data_type":"NPI-2",
+        "association":"1234567890",
         },
          .
          .
@@ -272,8 +272,8 @@ Provider-Payer Example #2: The provider is part of this health plan's network. T
 
         {
         "purpose":                 "PAYER-NETWORK",
-        "assoication_data_type":   "HPID",
-        "assocation":              "7000000002",
+        "association_data_type":   "HPID",
+        "association":              "7000000002",
         "accepting_new_patients":  true
         },
          .
@@ -292,8 +292,8 @@ Provider-Medicare Assocation
 
             {
             "purpose":                "MEDICARE-NETWORK",
-            "assoication_data_type":" "PAC-ID",
-            "assocation":             "3456783456",
+            "association_data_type":" "PAC-ID",
+            "association":             "3456783456",
             "accepting_new_patients": true
             },
              .
@@ -312,8 +312,8 @@ Provider-Medicaid Assocation
 
             {
             "purpose":                "MEDICAID-NETWORK",
-            "assoication_data_type":" "MEDICIAD-ID",
-            "assocation":             "403945674",
+            "association_data_type":" "MEDICIAD-ID",
+            "association":             "403945674",
             "accepting_new_patients": true
             "state":                  "WV", 
             },
@@ -333,8 +333,8 @@ Other Entity-ACO Assoication ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
 
             {
             "purpose":                "ACO-NETWORK",
-            "assoication_data_type":" "OEID",
-            "assocation":             "6029384756",
+            "association_data_type":" "OEID",
+            "association":             "6029384756",
             },
              .
              .
@@ -361,8 +361,8 @@ Individual provider to Organization  (NPI-1 --> NPI-2) Assocation with a Direct 
 
             {
             "purpose":                "PROVIDER-NETWORK",
-            "assoication_data_type":" "NPI-2",
-            "assocation":             "1234543211",
+            "association_data_type":" "NPI-2",
+            "association":             "1234543211",
             "endpoint_data_type":     "DIRECT-EMAIL-ADDRESS",
             "endpoint":               "jtkirk@direct.example.com",
             },
