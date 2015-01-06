@@ -2,14 +2,21 @@ Representing Associations Between Actors in the US Healthcare Ecosystem
 =======================================================================
 
 
-The document is a draft proposed format for implementing "associations" between the various actors in the US health care ecosystem. This includes entity to entity relationships as well as endpoints (including Direct addresses and URLs). It is based on the Provider JSON enumberation object format(<https://github.com/HHSIDEAlab/pjson>). `associations` is an arrary (i.e. a list of 0..N) `[]` of objects `{}` (i.e. a dictionary or hash) attached to the top level of our enumeration object `{}`.  For example:
+The document is a draft proposed format for implementing "associations" 
+between the various actors in the US health care ecosystem. This includes 
+entity to entity relationships as well as endpoints (including Direct 
+addresses and URLs). It is based on the Provider JSON enumeration object 
+format(<https://github.com/HHSIDEAlab/pjson>).  `associations` is an 
+arrary (i.e. a list of 0..N) `[]` of objects `{}` 
+(i.e. a dictionary or hash) attached to the top level of our 
+enumeration object `{}`.  For example:
 
-	{
-    "enumeration_type": "NPI-2",
-    "number": "12345678901",
-     .
-     .
-     "associations" : [ {association1}, {association2},...]
+    {
+        "enumeration_type": "NPI-2",
+        "number": "12345678901",
+        .
+        .
+        "associations" : [ {association1}, {association2},...]
 
 	}
 
