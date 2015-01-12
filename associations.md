@@ -196,8 +196,8 @@ A provider associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "NPI-2",
-     "association"; 			"12334567890",
+     "association_data_type":   "NPI-2",
+     "association": 			"12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 
@@ -209,8 +209,8 @@ A provider associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "NPI-2",
-     "association; 			"12334567890",
+     "association_data_type":   "NPI-2",
+     "association": 			"12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 	}
@@ -221,8 +221,8 @@ A MAC associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "MAC",
-     "association"; 			"3"
+     "association_data_type":   "MAC",
+     "association": 			"3"
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 	}
@@ -234,8 +234,8 @@ Adding a Direct Domain to an NPI-2.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "NPI-2",
-     "association"; 			"12334567890",
+     "association_data_type":   "NPI-2",
+     "association": 			"12334567890",
      "endpoint_data_type":      "DOMAIN",
      "endpoint":                "direct.example.com",
 	}
