@@ -5,8 +5,8 @@ Representing Associations Between Actors in the US Healthcare Ecosystem
 The document is a draft proposed format for implementing "associations" 
 between the various actors in the US health care ecosystem. This includes 
 entity to entity relationships as well as endpoints (including Direct 
-addresses and URLs). It is based on the Provider JSON enumeration object 
-format(<https://github.com/HHSIDEAlab/pjson>).  `associations` is an 
+addresses and URLs). It is based on the [Provider JSON enumeration object 
+format](<https://github.com/HHSIDEAlab/pjson>).  `associations` is an 
 arrary (i.e. a list of 0..N) `[]` of objects `{}` 
 (i.e. a dictionary or hash) attached to the top level of our 
 enumeration object `{}`.  For example:
@@ -25,7 +25,7 @@ enumeration object `{}`.  For example:
 Introduction
 ============
 
-Associations store relationships between entities as well as health information exchange endpoints.  Often these can be combined into one assication. For example, we can say that "Dr. Sally with NPI-1 of 1111111111 is part of XYZ, Hospital(with an NPI-2 of 1234567890) and has a Direct address of sally@xyzdirect.example.com and is not accepting new patients here".
+Associations store relationships between entities as well as health information exchange endpoints.  Often these can be combined into one assication. For example, we can say that "Dr. Sally with NPI-1 of 1111111111 is part of XYZ, Hospital (with an NPI-2 of 1234567890) and has a Direct address of sally@xyzdirect.example.com and is not accepting new patients here".
 
 Simple Organization Example (within an NPI-2 document):
 
@@ -200,8 +200,7 @@ A provider associated with an organization with a Direct address.
      "association"; 			"12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
-
-	}
+    }
 
 
 
@@ -329,7 +328,7 @@ Provider-Medicaid Association
             ]
 	}
 
-Other Entity-ACO Association ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
+Other Entity-ACO Association ( NPI-2 → OEID assumes an the ACI has an NPI-2)
 
     {
     "enumeration_type": "NPI-2",
@@ -345,7 +344,7 @@ Other Entity-ACO Association ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
             },
              .
              .
-            ]
+          ]
 	}
 
 
@@ -354,7 +353,7 @@ Other Entity-ACO Association ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
 Combination Examples
 --------------------
 
-Individual provider to Organization  (NPI-1 --> NPI-2) Association with a Direct address.
+Individual provider to Organization  (NPI-1 → NPI-2) Association with a Direct address.
 
 
 
