@@ -86,10 +86,8 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>Y</td>
   <td>
   The `purpose` determines a number of other requirements for the object.
-  Must be in "PERSON-CAN-MANAGE-THIS-RECORD",
-                  "ORG-CAN-MANAGE-THIS-RECORD",
-                  "HIE-EXCHANGE",
-                  `MEDICARE-NETWORK`, `MEDICAID-NETWORK`, `PRIVATE-PAYER-NETWORK`, 
+  Must be in    `HIE-EXCHANGE`,
+                  `MEDICARE-NETWORK`, `PRIVATE-PAYER-NETWORK`, 
                   `ACO-NETWORK`, `PROVIDER-NETWORK`,
                   `DOMAIN`
                   `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-OR`",
@@ -105,15 +103,14 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>S</td>
   <td>
    Must be in
-   ["NPI-1",
-   "NPI-2",
-   "HPID",
-   "OEID",
-   "MAC",
-   "EIN",
-   "PAC-ID",
-   "MEDICIAD-ID"
-   "OTHER"]
+   [`NPI-1`,
+   `NPI-2`,
+   `HPID`,
+   `OEID`,
+   `MAC`,
+   `EIN`,
+   `PAC-ID`,
+   `OTHER`]
   </td>
 </tr>
 
@@ -141,21 +138,22 @@ Associations contain several codified types (i.e. metadata) that classify the da
 
 
 <tr>
-  <td>association</td>
+  <td>identifier</td>
   <td>1024</td>
   <td>S</td>
   <td>
- The association's identifier. Required if `enpoint_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose_type` is in`PERSON-CAN-MANAGE-THIS-RECORD`,  
- `ORG-CAN-MANAGE-THIS-RECORD`, `HIE-EXCHANGE`,`MEDICAID-NETWORK`, `PAYER-NETWORK`, `ACO-NETWORK`, `DOMAIN`, `MEDICARE-NETWORK`, `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`, `PARENT-ORGANIZATION`,
+ The association's identifier. Required if `enpoint_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose_type` is in `HIE-EXCHANGE`,`MEDICAID-NETWORK`, `PAYER-NETWORK`, `ACO-NETWORK`, `DOMAIN`, `MEDICARE-NETWORK`, `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`, `PARENT-ORGANIZATION`,
   </td>
 </tr>
+
+
 
 
 <tr>
   <td>endpoint</td>
   <td>1024</td>
   <td>S</td>
-  <td>Required when purpose is HIE-EXCHANGE", or "DOMAIN". </td>
+  <td>Required when `purpose` is `HIE-EXCHANGE`, or `DOMAIN`. </td>
 </tr>
 
 
@@ -210,7 +208,7 @@ A provider associated with an organization with a Direct address.
     {
      "purpose_type":            "HIE-EXCHANGE",
      "association_data_type";   "NPI-2",
-     "association; 			"12334567890",
+     "association; 			    "12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 	}
@@ -308,26 +306,7 @@ Provider-Medicare Association
             ]
 	}
 
-Provider-Medicaid Association
 
-    {
-    "enumeration_type": "NPI-2",
-    "number": "1222222222",
-    .
-    .
-    "associations": [
-
-            {
-            "purpose":                "MEDICAID-NETWORK",
-            "association_data_type":" "MEDICIAD-ID",
-            "association":             "403945674",
-            "accepting_new_patients": true
-            "state":                  "WV", 
-            },
-             .
-             .
-            ]
-	}
 
 Other Entity-ACO Association ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
 
