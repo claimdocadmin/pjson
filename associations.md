@@ -86,14 +86,12 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>Y</td>
   <td>
   The `purpose` determines a number of other requirements for the object.
-  Must be in    `HIE-EXCHANGE`,
-                  `MEDICARE-NETWORK`, `PRIVATE-PAYER-NETWORK`, 
+  Must be in   [] `HIE-EXCHANGE`,
+                  `MEDICARE-NETWORK`, `MEDICAID-NETWORK`, `PRIVATE-PAYER-NETWORK`,
                   `ACO-NETWORK`, `PROVIDER-NETWORK`,
-                  `DOMAIN`
-                  `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-OR`",
-                  `PARENT-ORGANIZATION`,
-                  `OTHER-IDENTIFIER-LEGACY`,
-                  `OTHER-IDENTIFIER-2`. </td>
+                  `DOMAIN`,
+                  `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`,
+                  `PARENT-ORGANIZATION`] </td>
 </tr>
 
 
@@ -126,10 +124,9 @@ Associations contain several codified types (i.e. metadata) that classify the da
    `DIRECT-EMAIL-ADDRESS`,
    `REGULAR-EMAIL-ADDRESS`,
    `IA-USERNAME`,
-   `SOAP-WSGI-URL`,
+   `SOAP-WS-URL`,
    `CONNECT-URL`,
    `FHIR-URL`,
-   `HD-URL`,
    `RESTFUL-WS-URL`,
    `WEBSITE-URL`,
    `OTHER-URL`,
@@ -164,13 +161,6 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>`true` or `false`.</td>
 </tr>
 
-<tr>
-  <td>state</td>
-  <td>2</td>
-  <td>S</td>
-  <td>Required when `purpose` = `MEDICAID-NETWORK`. 2 letter ISO state or territory code.</td>
-</tr>
-
 
 <tr>
   <td>description</td>
@@ -194,7 +184,7 @@ A provider associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "NPI-2",
+     "association_data_type":   "NPI-2",
      "association"; 			"12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
@@ -207,7 +197,7 @@ A provider associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "NPI-2",
+     "association_data_type":   "NPI-2",
      "association; 			    "12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
@@ -219,7 +209,7 @@ A MAC associated with an organization with a Direct address.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "MAC",
+     "association_data_type":   "MAC",
      "association"; 			"3"
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
@@ -232,7 +222,7 @@ Adding a Direct Domain to an NPI-2.
 
     {
      "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type";   "NPI-2",
+     "association_data_type":   "NPI-2",
      "association"; 			"12334567890",
      "endpoint_data_type":      "DOMAIN",
      "endpoint":                "direct.example.com",
