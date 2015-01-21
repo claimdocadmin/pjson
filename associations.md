@@ -86,29 +86,22 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>Y</td>
   <td>
   The `purpose` determines a number of other requirements for the object.
-  Must be in   [] `HIE-EXCHANGE`,
+  Must be in  [ `HIE-EXCHANGE`,
                   `MEDICARE-NETWORK`, `MEDICAID-NETWORK`, `PRIVATE-PAYER-NETWORK`,
                   `ACO-NETWORK`, `PROVIDER-NETWORK`,
-                  `DOMAIN`,
-                  `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`,
-                  `PARENT-ORGANIZATION`] </td>
+                  `DOMAIN`, `PARENT-ORGANIZATION`] </td>
 </tr>
 
 
 <tr>
   <td>association_data_type</td>
-  <td>20</td>
+  <td>6</td>
   <td>S</td>
   <td>
    Must be in
-   [`NPI-1`,
-   `NPI-2`,
-   `HPID`,
-   `OEID`,
-   `MAC`,
-   `EIN`,
-   `PAC-ID`,
-   `OTHER`]
+   [`NPI-1`, `NPI-2`, `HPID`, `OEID`, `MAC`, `EIN`, `PAC-ID`, `OTHER`].
+   Required when `purpose` in [`HIE-EXCHANGE`, `MEDICARE-NETWORK`, `PRIVATE-PAYER-NETWORK`,
+   `ACO-NETWORK`, `PROVIDER-NETWORK`,`PARENT-ORGANIZATION`]
   </td>
 </tr>
 
@@ -121,15 +114,14 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>
    Required when purpose=`HIE-EXCHANGE`.
    Must be in 
-   `DIRECT-EMAIL-ADDRESS`,
+   [`DIRECT-EMAIL-ADDRESS`,
    `REGULAR-EMAIL-ADDRESS`,
-   `IA-USERNAME`,
    `SOAP-WS-URL`,
    `CONNECT-URL`,
    `FHIR-URL`,
    `RESTFUL-WS-URL`,
    `WEBSITE-URL`,
-   `OTHER-URL`,
+   `OTHER-URL`]
   </td>
 </tr>
 
@@ -139,7 +131,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>1024</td>
   <td>S</td>
   <td>
- The association's identifier. Required if `enpoint_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose_type` is in `HIE-EXCHANGE`,`MEDICAID-NETWORK`, `PAYER-NETWORK`, `ACO-NETWORK`, `DOMAIN`, `MEDICARE-NETWORK`, `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`, `PARENT-ORGANIZATION`,
+ The association's identifier. Required if `association_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose` is in [`HIE-EXCHANGE`,`MEDICAID-NETWORK`, `PAYER-NETWORK`, `ACO-NETWORK`, `DOMAIN`, `MEDICARE-NETWORK`, `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`, `PARENT-ORGANIZATION`]
   </td>
 </tr>
 
