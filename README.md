@@ -1,7 +1,7 @@
 ProviderJSON 
 ============
 
-Version: _0.3.0 (ALPHA)_
+Version: _0.3.1 (ALPHA)_
 
 ProviderJSON Format Definition
 ==============================
@@ -28,8 +28,7 @@ Core information is stored either at the top level or in the `basic` object. `ba
         "taxonomy_licenses"          : [...],
         "identifiers"                : [...],
         "specialties"                : [...],
-        "direct_addresses"           : [...],
-        "urls"                       : [...],
+        "associations"               : [...],
         .
         .
         .
@@ -1101,80 +1100,6 @@ The `taxonomy_licenses` arrary is designed to associate taxonomy codes with spec
 
 
 
-URLs (urls)
-===========
-
-The `url` arrary is designed to store various URL pointers to provider data such as websites and webservices.
-
-<table>
-
-<tr>
-  <td>Name</td>
-  <td>Max Length</td>
-  <td>Required</td>
-  <td>Notes</td>
-</tr>
-
-<tr>
-  <td>url</td>
-  <td>1024</td>
-  <td>Y</td>
-  <td>A url,</td>
-</tr>
-
-
-<tr>
-  <td>code</td>
-  <td>20</td>
-  <td>Y</td>
-  <td>URL Type code.  Accetable codes are ("WWW", "Website"),("MED-LICENSE", "Medical Licsense"),("WEB-SERVICE","Web Service"). SOAP and REST API's should select "WEB-SERVICE".</td>
-</tr>
-
-<tr>
-  <td>title</td>
-  <td>256</td>
-  <td>N</td>
-  <td>A tilte for the URL.</td>
-</tr>
-
-<tr>
-  <td>description</td>
-  <td>1024</td>
-  <td>N</td>
-  <td>Description of the URL's purpose.</td>
-</tr>
-
-
-</table>
-
-Examples:
-
-
-    {
-    "url": "http://example.com",
-    "code": "WWW",
-    "title": "Easton Avery Clinic"
-    }
-
-
-    {
-    "url": "https://example.com/webservice.wsgi",
-    "code": "WEB-SERVICE",
-    "title": "Some SOAP web service"
-    "description": "This is a WSGI to a SOAP service for x, y, and z."
-    }
-
-    {
-    "url": "https://example.com/get-some-data",
-    "code": "WEB-SERVICE",
-    "title": "Some REST web service"
-    "description": "This is an  HTTP GET for a, b, and c."
-    }
-
-
-
-
-
 
 
 
@@ -1227,49 +1152,15 @@ Identifiers (identifiers)
 
 
 
-Direct Addresses (direct_addresses)
-===================================
-
-<table>
-<tr>
-  <td>Name</td>
-  <td>Max Length</td>
-  <td>Required</td>
-  <td>Notes</td>
-</tr>
-
-<tr>
-  <td>email</td>
-  <td>150</td>
-  <td>Y</td>
-  <td>A Direct address</td>
-</tr>
-
-<tr>
-  <td>organization</td>
-  <td>150</td>
-  <td>Y</td>
-  <td>Name of organization</td>
-</tr>
-
-<tr>
-  <td>is_public</td>
-  <td>Boolean</td>
-  <td>Y</td>
-  <td>`true` if Direct address is public and `false` otherwise.</td>
-</tr>
-
-</table>
-
 Quick Installation of Reference Implementation
 ==============================================
 
 A validation library(Python) and command line tool for validating ProviderJSON
-is contained in this repository.  The easiest way to install it is using `pip`.
+is has moved to the `provider-data-tools`  repository https://github.com/hhsidealab/provider-data-tools.  The easiest way to install it is using `pip`.
 Open a terminal window and type:
 
 
-    sudo pip install providerjson
+    sudo pip install pdt
 
 
 Test it using the command line tool on Unixlike systems:
@@ -1298,7 +1189,7 @@ You can also use it in you own code like so:
 
 
     python
-    >>> from pjson.validate_pjson import validate_pjson
+    >>> from pdt.pjson.validate_pjson import validate_pjson
     >>> validate_pjson('{"number": "12345"}')
     >>> {'errors': ['The JSON object does not contain an enumeration_type.'], 'warnings': []}
     >>>
