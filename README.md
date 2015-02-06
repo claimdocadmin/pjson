@@ -788,12 +788,27 @@ Addresses (addresses)
           <td>Choices must be in ['DOM', 'FGN', 'MIL']</td>
         </tr>
 
+          <tr>
+          <td>override_address_standardization</td>
+          <td>Boolean</td>
+          <td>N</td>
+          <td>Instructs the API that the submitter is attesting to the 
+          address' correctness despite it does not match the address standardization.</td>
+        </tr>
+
+         <tr>
+          <td>accept_address_standardization</td>
+          <td>Boolean</td>
+          <td>N</td>
+          <td>Instructs the API replace the submitted address with the standardized address.              Use this feature with caution. Use the APIs validate feature to see the                        standardized address as a "dry run" before setting this flag.</td>
+        </tr>
+
 
         <tr>
           <td>address_1</td>
           <td>200</td>
           <td>Y</td>
-          <td></td>
+          <td>First line of the address</td>
         </tr>
 
 
@@ -801,29 +816,29 @@ Addresses (addresses)
           <td>address_2</td>
           <td>200</td>
           <td>N</td>
-          <td></td>
+          <td>Second line of an address.  Suite number apartment number etc.</td>
         </tr>
 
 
         <tr>
           <td>city</td>
           <td>200</td>
-          <td>N</td>
-          <td></td>
+          <td>Y</td>
+          <td>City</td>
         </tr>
 
         <tr>
           <td>zip</td>
           <td>10</td>
-          <td>N</td>
-          <td></td>
+          <td>S</td>
+          <td>Required for a domestic address. Format XXXXX-XXXX</td>
         </tr>
 
         <tr>
           <td>country_code</td>
           <td>2</td>
-          <td>N</td>
-          <td>Choices must be in ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI',
+          <td>S</td>
+          <td>Required if foreign address. Assumed US if not provided. Choices must be in ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI',
           'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB',
           'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BQ', 'BA', 'BW', 'BV', 'BR',
           'IO', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD',
@@ -852,49 +867,49 @@ Addresses (addresses)
           <td>driving_details</td>
           <td>15</td>
           <td>N</td>
-          <td></td>
+          <td>Optional infomation to help people find the location</td>
         </tr>
 
         <tr>
           <td>foreign_fax_number</td>
           <td>20</td>
           <td>N</td>
-          <td></td>
+          <td>Foreign fax number</td>
         </tr>
 
         <tr>
           <td>foreign_postal</td>
           <td>12</td>
-          <td>N</td>
-          <td></td>
+          <td>S</td>
+          <td>Required if a foreign address</td>
         </tr>
 
         <tr>
           <td>foreign_state</td>
           <td>2</td>
-          <td>N</td>
-          <td></td>
+          <td>S</td>
+          <td>Required if country_code is not "US"</td>
         </tr>
 
         <tr>
           <td>foreign_telephone_number</td>
           <td>20</td>
-          <td>N</td>
-          <td></td>
+          <td>S</td>
+          <td>Required if country_code is not "US</td>
         </tr>
 
         <tr>
           <td>hours_of_operation</td>
           <td>255</td>
           <td>N</td>
-          <td></td>
+          <td>Hours of operation for this location.</td>
         </tr>
 
         <tr>
           <td>lat</td>
           <td>20</td>
           <td>N</td>
-          <td></td>
+          <td>Optional latitude</td>
         </tr>
 
 
@@ -902,52 +917,15 @@ Addresses (addresses)
           <td>long</td>
           <td>20</td>
           <td>N</td>
-          <td></td>
+          <td>Optional longitude</td>
         </tr>
 
-        <tr>
-          <td>phone_number_extension</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>private_email_contact</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-
-        <tr>
-          <td>public_email_contact</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-
-        <tr>
-          <td>rdi</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-
-        <tr>
-          <td>record_type</td>
-          <td>2</td>
-          <td>N</td>
-          <td></td>
-        </tr>
 
         <tr>
           <td>telephone_number_extension</td>
           <td>10</td>
-          <td>N</td>
-          <td></td>
+          <td>S</td>
+          <td>Required if an extension exists to reach the location </td>
         </tr>
 
 
@@ -955,22 +933,14 @@ Addresses (addresses)
           <td>us_fax_number</td>
           <td>12</td>
           <td>N</td>
-          <td></td>
+          <td>Format xxx-xxx-xxxx</td>
         </tr>
 
         <tr>
           <td>us_telephone_number</td>
-          <td>20</td>
-          <td>N</td>
-          <td></td>
-        </tr>
-
-
-        <tr>
-          <td>website</td>
-          <td>15</td>
-          <td>N</td>
-          <td></td>
+          <td>10</td>
+          <td>S</td>
+          <td>Reuired for domestic addresses. format xxx-xxx-xxxx</td>
         </tr>
 
 </table>
