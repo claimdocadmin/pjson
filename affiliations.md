@@ -1,12 +1,17 @@
-Representing Associations Between Actors in the US Healthcare Ecosystem
-=======================================================================
+affiliations - Representing Between Actors in the US Healthcare Ecosystem
+=========================================================================
+
+The 'affiliation' object model is a simple means to express relationships
+within health care in JSON. This can include provider network information,
+endpoints, such as Direct Addresses,
 
 
-The document is a draft proposed format for implementing "associations" 
+
+The document is a draft proposed format for implementing "affiliations" 
 between the various actors in the US health care ecosystem. This includes 
 entity to entity relationships as well as endpoints (including Direct 
 addresses and URLs). It is based on the Provider JSON enumeration object 
-format(<https://github.com/HHSIDEAlab/pjson>).  `associations` is an 
+format(<https://github.com/HHSIDEAlab/pjson>).  `affiliations` is an 
 arrary (i.e. a list of 0..N) `[]` of objects `{}` 
 (i.e. a dictionary or hash) attached to the top level of our 
 enumeration object `{}`.  For example:
@@ -16,7 +21,7 @@ enumeration object `{}`.  For example:
         "number": "12345678901",
         .
         .
-        "associations" : [ {association1}, {association2},...]
+        "affiliations" : [ {affiliation1}, {affiliation2},...]
 
 	}
 
@@ -25,7 +30,7 @@ enumeration object `{}`.  For example:
 Introduction
 ============
 
-Associations store relationships between entities as well as health information exchange endpoints.  Often these can be combined into one assication. For example, we can say that "Dr. Sally with NPI-1 of 1111111111 is part of XYZ, Hospital(with an NPI-2 of 1234567890) and has a Direct address of sally@xyzdirect.example.com and is not accepting new patients here".
+affiliations store relationships between entities as well as health information exchange endpoints.  Often these can be combined into one assication. For example, we can say that "Dr. Sally with NPI-1 of 1111111111 is part of XYZ, Hospital(with an NPI-2 of 1234567890) and has a Direct address of sally@xyzdirect.example.com and is not accepting new patients here".
 
 Simple Organization Example (within an NPI-2 document):
 
@@ -34,11 +39,11 @@ Simple Organization Example (within an NPI-2 document):
     "number": "1234567890",
      .
      .
-     "associations" : [ 
+     "affiliations" : [ 
      			    {
      				"purpose_type":            "PROVIDER-NETWORK",
-     				"association_data_type":   "NPI-1",
-     				"association_identifier":  "1111111111",
+     				"affiliation_data_type":   "NPI-1",
+     				"affiliation_identifier":  "1111111111",
      				"endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      				"endpoint":                "sally@xyzdirect.example.com"
 					}
@@ -52,11 +57,11 @@ Simple Individual Example (within an NPI-1 document):
     "number": "1111111111",
      .
      .
-     "associations" : [ 
+     "affiliations" : [ 
      			    {
      				"purpose_type":            "PROVIDER-NETWORK",
-     				"association_data_type":   "NPI-2",
-     				"association_identifier":  "1234567890",
+     				"affiliation_data_type":   "NPI-2",
+     				"affiliation_identifier":  "1234567890",
      				"endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      				"endpoint":                "sally@xyzdirect.example.com"
 					}
@@ -68,7 +73,7 @@ Detailed Specification
 ======================
 
 
-Associations contain several codified types (i.e. metadata) that classify the data and laregly control what is required versus what is optional. These codified types are `purpose`,  `association_data_type`, and `endpoint_data_type`.  `purpose` is always required, while `association_data_type`, and `endpoint_data_type` are sometimes required based on the specific `purpose`.
+affiliations contain several codified types (i.e. metadata) that classify the data and laregly control what is required versus what is optional. These codified types are `purpose`,  `affiliation_data_type`, and `endpoint_data_type`.  `purpose` is always required, while `affiliation_data_type`, and `endpoint_data_type` are sometimes required based on the specific `purpose`.
 
 <table>
 
@@ -85,21 +90,21 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>Y</td>
   <td>
   The `purpose` determines a number of other requirements for the object.
-  Must be in  [ `HIE-EXCHANGE`,
-                  `MEDICARE-NETWORK`, `MEDICAID-NETWORK`, `PRIVATE-PAYER-NETWORK`,
+  Must be in  [ `HEALTH-INFORMATION-EXCHANGE`,
+                  `MEDICARE-NETWORK`, `MEDICAID-NETWORK`, `PAYER-NETWORK`,
                   `ACO-NETWORK`, `PROVIDER-NETWORK`,
                   `DOMAIN`, `PARENT-ORGANIZATION`] </td>
 </tr>
 
 
 <tr>
-  <td>association_data_type</td>
+  <td>affiliation_data_type</td>
   <td>6</td>
   <td>S</td>
   <td>
    Must be in
-   [`NPI-1`, `NPI-2`, `HPID`, `OEID`, `MAC`, `EIN`, `PAC-ID`, `OTHER`].
-   Required when `purpose` in [`HIE-EXCHANGE`, `MEDICARE-NETWORK`, `PRIVATE-PAYER-NETWORK`,
+   [`NPI-1`, `NPI-2`, `HPID`, `OEID`, `MAC`, `EIN`, `PAC-ID`,`HIOS-PLAN-ID`, `OTHER`].
+   Required when `purpose` in [`HEALTH-INFORMATION-EXCHANGE`, `MEDICARE-NETWORK`, `PRIVATE-PAYER-NETWORK`,
    `ACO-NETWORK`, `PROVIDER-NETWORK`,`PARENT-ORGANIZATION`]
   </td>
 </tr>
@@ -111,7 +116,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>50</td>
   <td>S</td>
   <td>
-   Required when purpose=`HIE-EXCHANGE`.
+   Required when purpose=`HEALTH-INFORMATION-EXCHANGE`.
    Must be in 
    [`DIRECT-EMAIL-ADDRESS`,
    `REGULAR-EMAIL-ADDRESS`,
@@ -126,11 +131,11 @@ Associations contain several codified types (i.e. metadata) that classify the da
 
 
 <tr>
-  <td>association_identifier</td>
+  <td>affiliation_identifier</td>
   <td>1024</td>
   <td>S</td>
   <td>
- The association's identifier. Required if `association_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose` is in [`HIE-EXCHANGE`,`MEDICAID-NETWORK`, `PAYER-NETWORK`, `ACO-NETWORK`, `DOMAIN`, `MEDICARE-NETWORK`, `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`, `PARENT-ORGANIZATION`]
+ The affiliation's identifier. Required if `affiliation_data_type` is in [`NPI-1`,`NPI-2`,`HPID`, `OEID`, `MAC`, `EIN` ] or if `purpose` is in [`HEALTH-INFORMATION-EXCHANGE`,`MEDICAID-NETWORK`, `PAYER-NETWORK`, `ACO-NETWORK`, `DOMAIN`, `MEDICARE-NETWORK`, `PROVIDES-SERVICES-ON-BEHALF-OF-THIS-ORG`, `PARENT-ORGANIZATION`]
   </td>
 </tr>
 
@@ -141,7 +146,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>endpoint</td>
   <td>1024</td>
   <td>S</td>
-  <td>Required when `purpose` is `HIE-EXCHANGE`, or `DOMAIN`. </td>
+  <td>Required when `purpose` is `HEALTH-INFORMATION-EXCHANGE`, or `DOMAIN`. </td>
 </tr>
 
 
@@ -157,7 +162,7 @@ Associations contain several codified types (i.e. metadata) that classify the da
   <td>description</td>
   <td>1024</td>
   <td>N</td>
-  <td>Description or written purpose of the association.</td>
+  <td>Description or written purpose of the affiliation.</td>
 </tr>
 
 
@@ -174,9 +179,9 @@ Direct Examples
 A provider associated with an organization with a Direct address.
 
     {
-     "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type":   "NPI-2",
-     "association_identifier": 	"12334567890",
+     "purpose_type":            "HEALTH-INFORMATION-EXCHANGE",
+     "affiliation_data_type":   "NPI-2",
+     "affiliation_identifier": 	"12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com"
 
@@ -187,8 +192,8 @@ A provider associated with an organization with a Direct address.
 A provider associated with an organization with a Direct address.
 
     {
-     "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type":   "NPI-2",
+     "purpose_type":            "HEALTH-INFORMATION-EXCHANGE",
+     "affiliation_data_type":   "NPI-2",
      "assoication_identifier":  "12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
@@ -199,9 +204,9 @@ A provider associated with an organization with a Direct address.
 A MAC associated with an organization with a Direct address.
 
     {
-     "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type":   "MAC",
-     "association_identifier": 	"3",
+     "purpose_type":            "HEALTH-INFORMATION-EXCHANGE",
+     "affiliation_data_type":   "MAC",
+     "affiliation_identifier": 	"3",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com"
 	}
@@ -212,14 +217,14 @@ A MAC associated with an organization with a Direct address.
 Adding a Direct Domain to an NPI-2.
 
     {
-     "purpose_type":            "HIE-EXCHANGE",
-     "association_data_type":   "NPI-2",
-     "association_identifier":  "12334567890",
+     "purpose_type":            "HEALTH-INFORMATION-EXCHANGE",
+     "affiliation_data_type":   "NPI-2",
+     "affiliation_identifier":  "12334567890",
      "endpoint_data_type":      "DOMAIN",
      "endpoint":                "direct.example.com"
 	}
 
-Generic Association Examples
+Generic affiliation Examples
 ----------------------------
 
 
@@ -231,12 +236,12 @@ Provider-Payer Example 1: The provider is part of this health plan's network. Th
     "number": "7000000001",
     .
     .
-    "associations": [
+    "affiliations": [
 
         {
         "purpose":                 "PAYER-NETWORK",
-        "association_data_type":   "NPI-2",
-        "association_identifier":  "1234567890"
+        "affiliation_data_type":   "NPI-2",
+        "affiliation_identifier":  "1234567890"
         },
          .
          .
@@ -254,12 +259,12 @@ Provider-Payer Example #2: The provider is part of this health plan's network. T
     "number":           "1111111111",
     .
     .
-    "associations": [
+    "affiliations": [
 
         {
         "purpose":                 "PAYER-NETWORK",
-        "association_data_type":   "HPID",
-        "association_identifier:   "7000000002",
+        "affiliation_data_type":   "HPID",
+        "affiliation_identifier:   "7000000002",
         "accepting_new_patients":  true
         },
          .
@@ -267,19 +272,19 @@ Provider-Payer Example #2: The provider is part of this health plan's network. T
         ]
 	}
 
-Provider-Medicare Association
+Provider-Medicare affiliation
 
     {
     "enumeration_type": "NPI-2",
     "number": "1222222222",
     .
     .
-    "associations": [
+    "affiliations": [
 
             {
             "purpose":                "MEDICARE-NETWORK",
-            "association_data_type":  "PAC-ID",
-            "association_identifier": "3456783456",
+            "affiliation_data_type":  "PAC-ID",
+            "affiliation_identifier": "3456783456",
             "accepting_new_patients": true
             },
              .
@@ -289,19 +294,19 @@ Provider-Medicare Association
 
 
 
-Other Entity-ACO Association ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
+Other Entity-ACO affiliation ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
 
     {
     "enumeration_type": "NPI-2",
     "number": "1222222222",
     .
     .
-    "associations": [
+    "affiliations": [
 
             {
             "purpose":                "ACO-NETWORK",
-            "association_data_type":  "OEID",
-            "association_identifier": "6029384756"
+            "affiliation_data_type":  "OEID",
+            "affiliation_identifier": "6029384756"
             },
              .
              .
@@ -314,7 +319,7 @@ Other Entity-ACO Association ( NPI-2 --> OEID Assumes an the ACI has an NPI-2)
 Combination Examples
 --------------------
 
-Individual provider to Organization  (NPI-1 --> NPI-2) Association with a Direct address.
+Individual provider to Organization  (NPI-1 --> NPI-2) affiliation with a Direct address.
 
 
 
@@ -324,12 +329,12 @@ Individual provider to Organization  (NPI-1 --> NPI-2) Association with a Direct
     "number": "1222222222",
     .
     .
-    "associations": [
+    "affiliations": [
 
             {
             "purpose":                "PROVIDER-NETWORK",
-            "association_data_type":  "NPI-2",
-            "association_identifier": "1234543211",
+            "affiliation_data_type":  "NPI-2",
+            "affiliation_identifier": "1234543211",
             "endpoint_data_type":     "DIRECT-EMAIL-ADDRESS",
             "endpoint":               "jtkirk@direct.example.com"
             },
@@ -353,7 +358,7 @@ A homepage URL in an individual provider's document
     "number": "1575938278",
     .
     .
-    "associations": [
+    "affiliations": [
 
             {
             "purpose":                "OTHER",
@@ -373,10 +378,10 @@ Add a Connect URL to a Provider organization document
     "number": "1222222222",
     .
     .
-    "associations": [
+    "affiliations": [
 
             {
-            "purpose":                "HIE-EXCHANGE",
+            "purpose":                "HEALTH-INFORMATION-EXCHANGE",
             "endpoint_data_type":     "CONNECT-URL",
             "endpoint":               "http://connect.example.com/connect.wsgi"
             },
@@ -397,10 +402,10 @@ Add an arbitrary RESTFul service to a Provider organization document
     "number": "1222222222",
     .
     .
-    "associations": [
+    "affiliations": [
 
             {
-            "purpose":                "HIE-EXCHANGE",
+            "purpose":                "HEALTH-INFORMATION-EXCHANGE",
             "endpoint_data_type":     "RESTFUL-WS-URL",
             "endpoint":               "https://example.com/some-service",
             "description":            "Fetches the lastest data on x,y,z"
@@ -420,10 +425,10 @@ Add a Healthcare Directory to a provider organization document
     "number": "1222222222",
     .
     .
-    "associations": [
+    "affiliations": [
 
             {
-            "purpose":                "HIE-EXCHANGE",
+            "purpose":                "HEALTH-INFORMATION-EXCHANGE",
             "endpoint_data_type":     "HD-URL",
             "endpoint":               "https://hpdplus.example.com/hd.wsgi"
             },
