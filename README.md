@@ -1,7 +1,7 @@
 ProviderJSON 
 ============
 
-Version: _0.3.1 (ALPHA)_
+Version: _0.3.2 (ALPHA)_
 
 ProviderJSON Format Definition
 ==============================
