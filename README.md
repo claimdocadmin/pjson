@@ -28,7 +28,7 @@ Core information is stored either at the top level or in the `basic` object. `ba
         "taxonomy_licenses"          : [...],
         "identifiers"                : [...],
         "specialties"                : [...],
-        "associations"               : [...],
+        "affiliations"               : [...],
         .
         .
         .
@@ -1119,6 +1119,40 @@ Identifiers (identifiers)
 
 
 </table>
+
+Affiliations (affiliations)
+==========================
+
+The affiliations array is the mean wy whicy Direct addresses, endpoints, and network affiliations are expressed.  Below is simple example of a Direct addresss:
+
+	{
+    "enumeration_type": "NPI-1",
+    "number":           "1111111111",
+    "basic": {
+             "first_name": "James",
+             "last_name": "Kirk",
+             .
+             .
+             },
+    .
+    .
+    "affiliations":[
+            {
+            "purpose_type":            "HEALTH-INFORMATION-EXCHANGE",
+            "affiliation_data_type":   "NPI-2",
+            "affiliation_id":          "12334567890",
+            "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
+            "endpoint":                "jtkirk@direct.example.com"
+            }
+     ]
+     }
+
+In this example, James Kirk with an NPI 111111111, has one Direct address from the 
+Organization with the NPI-2 of 12334567890.
+
+
+See <a href= https://github.com/HHSIDEAlab/pjson/blob/master/affiliationas.md>affiliations.md</a> for the full definition.
+
 
 
 
