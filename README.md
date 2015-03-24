@@ -1,7 +1,7 @@
 ProviderJSON 
 ============
 
-Version: _0.3.1 (ALPHA)_
+Version: _0.3.2 (ALPHA)_
 
 ProviderJSON Format Definition
 ==============================
@@ -777,7 +777,7 @@ Addresses (addresses)
           <td>20</td>
           <td>Y</td>
           <td>Choices must be in ['LOCATION', 'MAILING', 'MEDREC-STORAGE', '1099',
-          'REVALIDATION', 'ADDITIONAL-LOCATION', 'REMITTANCE']</td>
+          'REVALIDATION', 'ADDITIONAL-LOCATION', 'REMITTANCE', 'ADDITIONAL-DOCUMENATION-REQUESTS']</td>
 		</tr>
 
 
