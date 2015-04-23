@@ -156,6 +156,13 @@ affiliations contain several codified types (i.e. metadata) that classify the da
   <td>`true` or `false`.</td>
 </tr>
 
+<tr>
+  <td>for_additional_documentation_request</td>
+  <td>Boolean</td>
+  <td>N</td>
+  <td>`true` or `false`. This field is primarly used to flag a Direct address as one that is used for CMS to request additional patient documentation. </td>
+</tr>
+
 
 <tr>
   <td>description</td>
