@@ -200,7 +200,7 @@ A provider associated with an organization with a Direct address.
     {
      "purpose_type":            "HEALTH-INFORMATION-EXCHANGE",
      "affiliation_data_type":   "NPI-2",
-     "assoication_identifier":  "12334567890",
+     "affiliation_identifier":  "12334567890",
      "endpoint_data_type":      "DIRECT-EMAIL-ADDRESS",
      "endpoint":                "jtkirk@direct.example.com",
 	}
@@ -218,8 +218,6 @@ A MAC associated with an organization with a Direct address.
 	}
 
 
-
-
 Adding a Direct Domain to an NPI-2.
 
     {
@@ -230,7 +228,7 @@ Adding a Direct Domain to an NPI-2.
      "endpoint":                "direct.example.com"
 	}
 
-Generic affiliation Examples
+Generic Affiliation Examples
 ----------------------------
 
 
@@ -326,8 +324,6 @@ Combination Examples
 --------------------
 
 Individual provider to Organization  (NPI-1 --> NPI-2) affiliation with a Direct address.
-
-
 
 
     {
