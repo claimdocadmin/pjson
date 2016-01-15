@@ -3,7 +3,7 @@ affiliations - Representing Relationships Between Actors in the US Healthcare Ec
 
 The 'affiliation' object model is a simple means to express relationships
 within health care in JSON. This can include provider network information,
-endpoints, such as Direct Addresses,
+endpoints, such as Direct Addresses.
 
 
 The document is a draft proposed format for implementing "affiliations" 
