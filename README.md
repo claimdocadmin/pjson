@@ -27,7 +27,6 @@ Core information is stored either at the top level or in the `basic` object. `ba
         "licenses"                   : [...],
         "taxonomy_licenses"          : [...],
         "identifiers"                : [...],
-        "specialties"                : [...],
         "affiliations"               : [...],
         .
         .
@@ -80,8 +79,7 @@ whether the request is for a new enumeration or a change request.
 contact person, etc.). `addresses` contains an array of provider address objects.
 `taxonomies` is an array of taxonomy classification objects,`licenses` contains
 an array of license information. `identifiers` contains an array of other
-identifier objects. `specialities` contains an array of provider specalitt
-objects. `direct-addresses` contain an array of Direct email address objects.
+identifier objects. `direct-addresses` contain an array of Direct email address objects.
 Each of these main components are described in detail in the sections below.
 Much of the information is optional or is only required in specific
 circumstances. It is possibile to add additional infformation to this document
@@ -212,7 +210,7 @@ These are as follows:
    <td>organizational_subpart</td>
    <td>Boolean</td>
    <td>S</td>
-   <td>Applies only to NPI-2. true or false.</td>
+   <td>Applies only to NPI-2. Choices are `true` or `false`.</td>
  </tr>
 
 
@@ -263,7 +261,7 @@ These are as follows:
    'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA',
    'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND',
    'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA',
-   'WV', 'WI', 'WY', 'AS', 'FM', 'GU', 'MH', 'MP', 'PR', 'PW', 'VI', 'ZZ'].</td>
+   'WV', 'WI', 'WY', 'AS', 'FM', 'GU', 'MH', 'MP', 'PR', 'PW', 'VI', 'ZZ']. Use ZZ if born outside the US or US territories.</td>
  </tr>
 
 
@@ -271,7 +269,7 @@ These are as follows:
    <td>country_of_birth</td>
    <td>2</td>
    <td>S</td>
-   <td>Applies to NPI-1.Choices must be in ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ',
+   <td>Applies only to NPI-1. Choices must be in ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ',
    'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE',
    'BZ', 'BJ', 'BM', 'BT', 'BO', 'BQ', 'BA', 'BW', 'BV', 'BR', 'IO', 'BN', 'BG',
    'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC',
