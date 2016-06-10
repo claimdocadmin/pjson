@@ -1121,7 +1121,7 @@ Identifiers (identifiers)
 Affiliations (affiliations)
 ==========================
 
-The affiliations array is the mean wy whicy Direct addresses, endpoints, and network affiliations are expressed.  Below is simple example of a Direct addresss:
+The affiliations array is the mean by which Direct addresses, endpoints, and network affiliations are expressed.  Below is simple example of a Direct addresss:
 
 	{
     "enumeration_type": "NPI-1",
